@@ -1,0 +1,27 @@
+.zoom-image-main-container:hover .img-zoom-result  {
+  display: block;
+}
+.zoom-image-main-container:hover .img-zoom-lens{
+  display: block;
+}
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  background: linear-gradient(rgba(6, 8, 155, 0.2), rgba(21, 0, 97, 0.2), rgba(18, 146, 185, 0.2));
+  width: 80px;
+  height: 80px;
+  display: none;
+}
+
+.img-zoom-result {
+  position: absolute;
+  display: none;
+  /* border: 1px solid #d4d4d4;
+  width: 500px;
+  height: 500px;
+  background-repeat: no-repeat; */
+}
