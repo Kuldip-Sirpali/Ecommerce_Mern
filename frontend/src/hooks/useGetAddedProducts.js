@@ -8,7 +8,6 @@ const useGetAddedProducts = (ids) => {
         const response = await axios.get(`/api/v1/cart/get-added-products`, {
           ids,
         });
-        console.log(response);
       } catch (error) {
         console.log(error);
       }

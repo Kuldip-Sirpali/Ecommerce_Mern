@@ -4,8 +4,6 @@ import { DISCOUNT_PERCENTAGE } from "../../../utils/constants";
 const ProductDetails = () => {
   const { selectedProduct } = useSelector((state) => state.items);
 
-  // const description = selectedProduct.description.split(".")
-  // console.log(description)
   const finalPrice = Math.round(((100 - DISCOUNT_PERCENTAGE) / 100) * selectedProduct?.price);
   const discountedPrice = selectedProduct?.price - finalPrice;
   console.log(discountedPrice);

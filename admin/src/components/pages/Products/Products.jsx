@@ -24,7 +24,6 @@ const Products = () => {
     const fetchAllProducts = async () => {
       try {
         const response = await axios.get(`/api/v1/admin/get-all-products`);
-        console.log(response);
         dispatch(getProducts(response.data.data));
       } catch (error) {
         console.log(error);

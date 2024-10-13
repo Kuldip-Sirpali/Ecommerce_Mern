@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-const ImageZoom = ({ src, width = 300, height = 240 }) => {
+const ImageZoom = ({ src }) => {
   const imgRef = useRef(null);
   const resultRef = useRef(null);
   const lensRef = useRef(null);

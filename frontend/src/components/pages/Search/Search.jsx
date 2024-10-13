@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getSearchProducts } from '../../../redux/ProductSlice';
+import { getSearchProducts } from '../../../redux/productSlice';
 const Search = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { SiNamebase } from "react-icons/si";
-import { BiRename } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +10,6 @@ import avatar from "/avatar.jpg";
 import { useNavigate } from "react-router-dom";
 import { getAdmin } from "../../../redux/adminSlice";
 const Auth = () => {
-  const { admin } = useSelector((state) => state.appAdmin);
   const [showPassword, setShowPassword] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const dispatch = useDispatch();
@@ -66,8 +64,6 @@ const Auth = () => {
             },
           }
         );
-
-        console.log(response);
         dispatch(getAdmin(response.data.data.admin));
         navigate("/");
       } catch (error) {
@@ -81,7 +77,6 @@ const Auth = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        console.log(response);
         setIsAdminLoggedIn(!isAdminLoggedIn);
       } catch (error) {
         console.log(error);

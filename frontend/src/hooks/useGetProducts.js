@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProducts } from "../redux/ProductSlice";
+import { getProducts } from "../redux/productSlice";
 const useGetProducts = (page, loading, setLoading) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);

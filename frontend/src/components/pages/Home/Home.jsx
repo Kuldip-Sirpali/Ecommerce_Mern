@@ -1,8 +1,5 @@
 import React from 'react'
 import Slideshow from './SlideShow';
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import Store from '../Store/Store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { DISCOUNT_PERCENTAGE } from '../../../utils/constants';

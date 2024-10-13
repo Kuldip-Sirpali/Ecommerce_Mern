@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../Button";
-
 import axios from "axios";
 import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +18,6 @@ const Profile = () => {
   const handleSignOut = async () => {
     try {
       const response = await axios.post(`/api/v1/user/signOut`);
-      console.log(response);
       dispatch(getUser(null));
       navigate("/auth");
     } catch (error) {

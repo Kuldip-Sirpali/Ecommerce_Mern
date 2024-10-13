@@ -8,7 +8,6 @@ export const useGetCategorizedProduct = (categoryName, page) => {
       const response = await axios.get(
         `/api/v1/store/get-categorized-products?category=${categoryName}&page=${page}&limit=10`
       );
-      console.log(response.data.data);
       setProducts((prev) => {
         const newItems = [...prev, ...response.data.data];
         // Filter out duplicates based on a unique property (like _id)

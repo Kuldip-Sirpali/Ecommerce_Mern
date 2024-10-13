@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "../../Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +8,6 @@ import { DISCOUNT_PERCENTAGE } from "../../../utils/constants";
 const Store = () => {
   const { user } = useSelector((state) => state.customer);
   const navigate = useNavigate();
-  // const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [products] = useGetProducts(page, loading, setLoading);

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import Upload from "./components/pages/Upload/Upload";
 import Container from "./Container";
