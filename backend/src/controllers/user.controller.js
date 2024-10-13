@@ -104,7 +104,15 @@ export const signOutUser = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
+    .clearCookie("accessToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    })
+    .clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    })
     .json(new ApiResponse(200, {}, "User signout successfully"));
 });
