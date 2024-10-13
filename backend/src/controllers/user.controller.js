@@ -6,6 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 const options = {
   httpOnly: true,
   secure: true,
+  sameSite: "None",
 };
 const generateAccessAndRefreshTokens = async (userId) => {
   try {

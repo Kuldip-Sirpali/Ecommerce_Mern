@@ -9,6 +9,7 @@ import { uploadOnCloudinary } from "../utils/cloudinaryUploader.js";
 const options = {
   httpOnly: true,
   secure: true,
+  sameSite: "None",
 };
 const generateAccessAndRefreshTokens = async (adminId) => {
   try {
