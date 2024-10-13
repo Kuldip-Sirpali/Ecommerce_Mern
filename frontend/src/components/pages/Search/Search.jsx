@@ -4,6 +4,7 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getSearchProducts } from '../../../redux/productSlice';
+import { BACKEND_URL } from '../../../utils/constants';
 const Search = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Search = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`/api/v1/store/search-product?query=${query}`);
+      const response = await axios.get(`${BACKEND_URL}/api/v1/store/search-product?query=${query}`);
       dispatch(getSearchProducts(response?.data?.data));
       setQuery("")
       navigate(`/search/${query}`)

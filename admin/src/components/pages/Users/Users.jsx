@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getRefresh, getUsers } from "../../../redux/adminSlice";
 import { handleDeleteUser } from "../../../API/handler";
+import { BACKEND_URL } from "../../../utils/constants";
 const Users = () => {
   const { admin, users, refresh } = useSelector((state) => state.appAdmin);
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Users = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.get(`/api/v1/admin/get-all-users`);
+        const response = await axios.get(`${BACKEND_URL}/api/v1/admin/get-all-users`);
         dispatch(getUsers(response?.data?.data));
       } catch (error) {
         console.log(error);

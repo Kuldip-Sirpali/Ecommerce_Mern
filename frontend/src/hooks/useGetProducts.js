@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../redux/productSlice";
+import { BACKEND_URL } from "../utils/constants";
 const useGetProducts = (page, loading, setLoading) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const useGetProducts = (page, loading, setLoading) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `/api/v1/store/get-products?page=${page}&limit=10`
+          `${BACKEND_URL}/api/v1/store/get-products?page=${page}&limit=10`
         );
         setProducts((prev) => {
           const newItems = [...prev, ...response?.data?.data];

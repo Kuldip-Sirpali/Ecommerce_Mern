@@ -9,6 +9,7 @@ import Avatar from "react-avatar";
 import avatar from "/avatar.jpg";
 import { useNavigate } from "react-router-dom";
 import { getAdmin } from "../../../redux/adminSlice";
+import { BACKEND_URL } from "../../../utils/constants";
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
@@ -53,7 +54,7 @@ const Auth = () => {
     if (isAdminLoggedIn) {
       try {
         const response = await axios.post(
-          `/api/v1/admin/logIn`,
+          `${BACKEND_URL}/api/v1/admin/logIn`,
           {
             adminEmail: adminDetails.adminEmail,
             adminPassword: adminDetails.adminPassword,
@@ -72,7 +73,7 @@ const Auth = () => {
     } else {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.post(`/api/v1/admin/register`, formData, {
+        const response = await axios.post(`${BACKEND_URL}/api/v1/admin/register`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

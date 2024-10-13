@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { BACKEND_URL } from "../utils/constants";
 export const useGetCategorizedProduct = (categoryName, page) => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const fetchCategorizedProducts = async () => {
     try {
       const response = await axios.get(
-        `/api/v1/store/get-categorized-products?category=${categoryName}&page=${page}&limit=10`
+        `${BACKEND_URL}/api/v1/store/get-categorized-products?category=${categoryName}&page=${page}&limit=10`
       );
       setProducts((prev) => {
         const newItems = [...prev, ...response?.data?.data];

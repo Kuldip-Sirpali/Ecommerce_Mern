@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../../utils/constants";
 const Auth = () => {
   const [isUserSignIn, setIsUserSignIn] = useState(true);
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Auth = () => {
     if (isUserSignIn) {
       try {
         const response = await axios.post(
-          `/api/v1/user/signIn`,
+          `${BACKEND_URL}/api/v1/user/signIn`,
           {
             email: userDetails?.email,
             password: userDetails?.password,

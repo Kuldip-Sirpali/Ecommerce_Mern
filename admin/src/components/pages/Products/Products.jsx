@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getProducts, getRefresh } from "../../../redux/adminSlice";
 import { handleDeleteProduct } from "../../../API/handler";
+import { BACKEND_URL } from "../../../utils/constants";
 const Products = () => {
   const { admin, products, refresh } = useSelector((state) => state.appAdmin);
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Products = () => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get(`/api/v1/admin/get-all-products`);
+        const response = await axios.get(`${BACKEND_URL}/api/v1/admin/get-all-products`);
         dispatch(getProducts(response?.data?.data));
       } catch (error) {
         console.log(error);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { BACKEND_URL } from "../../../utils/constants";
 const Upload = () => {
   const { admin } = useSelector((state) => state.appAdmin);
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Upload = () => {
     try {
       axios.defaults.withCredentials = true;
       const response = await axios.post(
-        `/api/v1/store/create-product`,
+        `${BACKEND_URL}/api/v1/store/create-product`,
         formData,
         {
           headers: {
