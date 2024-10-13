@@ -9,7 +9,7 @@ export const useGetCategorizedProduct = (categoryName, page) => {
         `/api/v1/store/get-categorized-products?category=${categoryName}&page=${page}&limit=10`
       );
       setProducts((prev) => {
-        const newItems = [...prev, ...response.data.data];
+        const newItems = [...prev, ...response?.data?.data];
         // Filter out duplicates based on a unique property (like _id)
         const uniqueItems = Array.from(
           new Set(newItems.map((item) => item._id))

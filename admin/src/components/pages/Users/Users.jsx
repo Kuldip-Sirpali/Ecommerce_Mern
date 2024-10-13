@@ -21,7 +21,7 @@ const Users = () => {
     const fetchAllUsers = async () => {
       try {
         const response = await axios.get(`/api/v1/admin/get-all-users`);
-        dispatch(getUsers(response.data.data));
+        dispatch(getUsers(response?.data?.data));
       } catch (error) {
         console.log(error);
       }

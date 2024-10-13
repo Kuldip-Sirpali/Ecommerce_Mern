@@ -64,7 +64,7 @@ const Auth = () => {
             },
           }
         );
-        dispatch(getAdmin(response.data.data.admin));
+        dispatch(getAdmin(response?.data?.data?.admin));
         navigate("/");
       } catch (error) {
         console.log(error);

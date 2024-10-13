@@ -12,7 +12,7 @@ const Search = () => {
     e.preventDefault();
     try {
       const response = await axios.get(`/api/v1/store/search-product?query=${query}`);
-      dispatch(getSearchProducts(response.data.data));
+      dispatch(getSearchProducts(response?.data?.data));
       setQuery("")
       navigate(`/search/${query}`)
     } catch (error) {

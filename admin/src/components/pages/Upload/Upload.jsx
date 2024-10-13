@@ -50,7 +50,7 @@ const Upload = () => {
         }
       );
 
-      console.log(response);
+
       setProductDetails({
         title: "",
         description: "",

@@ -9,7 +9,7 @@ const useGetProduct = (id) => {
       try {
         axios.defaults.withCredentials = true;
         const response = await axios.get(`/api/v1/store/get-product?id=${id}`);
-        dispatch(getSelectedProduct(response.data.data));
+        dispatch(getSelectedProduct(response?.data?.data));
       } catch (error) {
         console.log(error);
       }
