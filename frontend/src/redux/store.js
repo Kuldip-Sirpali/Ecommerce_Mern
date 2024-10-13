@@ -16,7 +16,7 @@ const persistConfig = {
 };
 
 import userSlice from "./userSlice";
-import productSlice from "./ProductSlice";
+import productSlice from "./productSlice";
 import cartSlice from "./cartSlice";
 
 const rootReducer = combineReducers({
