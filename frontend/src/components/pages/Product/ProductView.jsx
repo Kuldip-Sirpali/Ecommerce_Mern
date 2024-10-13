@@ -14,7 +14,6 @@ const ProductView = () => {
   useGetProduct(id)
   const { selectedProduct } = useSelector((state) => state.items);
   const { user } = useSelector((state => state.customer))
-  console.log(selectedProduct);
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

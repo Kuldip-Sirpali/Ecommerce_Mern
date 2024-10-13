@@ -62,7 +62,7 @@ const Auth = () => {
     } else {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.post(`/api/v1/user/register`, formData, {
+        const response = await axios.post(`${BACKEND_URL}/api/v1/user/register`, formData, {
           headers: {
             "Content-Type": "application/json",
           },

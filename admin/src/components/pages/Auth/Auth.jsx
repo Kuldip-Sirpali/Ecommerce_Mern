@@ -37,7 +37,6 @@ const Auth = () => {
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     setAdminDetails((prevDetails) => ({
       ...prevDetails,
       image: file,
