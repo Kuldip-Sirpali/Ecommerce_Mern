@@ -1,17 +1,22 @@
-
-
-
-
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { DISCOUNT_PERCENTAGE } from '../../../utils/constants';
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../Button';
 import { useNavigate, useParams } from 'react-router-dom';
+import { addToCart } from '../../../redux/cartSlice';
 
 const SearchPage = () => {
   const navigate = useNavigate()
   const { searchProducts } = useSelector((state) => state.items);
-  const { query } = useParams()
+  const { user } = useSelector((state) => state.customer);
+  const { query } = useParams();
+  const dispatch = useDispatch();
+  const handleAddToCart = (item) => {
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
+    dispatch(addToCart(item));
+  };
   return (
     <section className='p-4 min-h-screen'>
 
@@ -38,7 +43,7 @@ const SearchPage = () => {
 
               <h2 className="text-lg ">{item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}</h2>
 
-              <h3 className='text-green-400'>Rs.{item.price}{DISCOUNT_PERCENTAGE}</h3>
+              <h3 className='text-green-400'>Rs.{item.price}</h3>
               <Button onClick={() => handleAddToCart(item)} className="bg-green-500">Add to cart</Button>
             </div>
           ))}

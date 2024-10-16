@@ -4,7 +4,6 @@ import Button from "../../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 import useGetProducts from "../../../hooks/useGetProducts";
-import { DISCOUNT_PERCENTAGE } from "../../../utils/constants";
 const Store = () => {
   const { user } = useSelector((state) => state.customer);
   const navigate = useNavigate();
@@ -57,7 +56,7 @@ const Store = () => {
                 ? `${item.title.slice(0, 20)}...`
                 : item.title}
             </h2>
-            <h3 className='text-green-400 text-sm'>Rs.{item.price}{DISCOUNT_PERCENTAGE}</h3>
+            <h3 className='text-green-400 text-sm'>Rs.{item.price}</h3>
 
             <Button
               onClick={() => handleAddToCart(item)}
