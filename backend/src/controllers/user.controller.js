@@ -75,7 +75,10 @@ export const signInUser = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
+    .cookie("refreshToken", refreshToken, {
+      ...options,
+      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+    })
     .json(
       new ApiResponse(
         200,
