@@ -24,7 +24,7 @@ const Dashboard = () => {
     if (!token) {
       dispatch(getAdmin(null));
     }
-  }, []);
+  }, [token]);
   return (
     <>
       <div className="p-6 bg-white shadow-md rounded-lg max-w-md mx-auto">

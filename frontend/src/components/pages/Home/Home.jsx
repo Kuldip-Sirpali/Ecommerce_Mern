@@ -11,7 +11,7 @@ const Home = () => {
     if (!token) {
       dispatch(getUser(null));
     }
-  }, []);
+  }, [token]);
   return (
     <>
       <section className="w-full  md:p-1 flex justify-center">
