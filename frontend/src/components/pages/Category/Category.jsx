@@ -5,7 +5,6 @@ import { useGetCategorizedProduct } from '../../../hooks/useGetCategorizedProduc
 import Button from '../../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../redux/cartSlice';
-import { DISCOUNT_PERCENTAGE } from '../../../utils/constants';
 const Category = () => {
   const navigate = useNavigate();
   const { categoryName } = useParams()

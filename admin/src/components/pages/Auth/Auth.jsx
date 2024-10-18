@@ -4,11 +4,11 @@ import { FiEyeOff } from "react-icons/fi";
 import { SiNamebase } from "react-icons/si";
 import { MdOutlineMail } from "react-icons/md";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Avatar from "react-avatar";
 import avatar from "/avatar.jpg";
 import { useNavigate } from "react-router-dom";
-import { getAdmin } from "../../../redux/adminSlice";
+import { getAdmin, getToken } from "../../../redux/adminSlice";
 import { BACKEND_URL } from "../../../utils/constants";
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -65,6 +65,7 @@ const Auth = () => {
           }
         );
         dispatch(getAdmin(response?.data?.data?.admin));
+        dispatch(getToken(response?.accessToken));
         navigate("/");
       } catch (error) {
         console.log(error);

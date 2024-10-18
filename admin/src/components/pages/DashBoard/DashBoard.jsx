@@ -6,7 +6,7 @@ import Avatar from "react-avatar";
 import { getAdmin } from "../../../redux/adminSlice";
 import { handleLogOut } from "../../../API/handler";
 const Dashboard = () => {
-  const { admin } = useSelector((state) => state.appAdmin);
+  const { admin, token } = useSelector((state) => state.appAdmin);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,7 +20,11 @@ const Dashboard = () => {
     dispatch(getAdmin(null));
     navigate("/auth");
   };
-
+  useEffect(() => {
+    if (!token) {
+      dispatch(getAdmin(null));
+    }
+  }, []);
   return (
     <>
       <div className="p-6 bg-white shadow-md rounded-lg max-w-md mx-auto">

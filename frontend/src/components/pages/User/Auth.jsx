@@ -55,7 +55,7 @@ const Auth = () => {
           }
         );
         dispatch(getUser(response?.data?.data?.user));
-        dispatch(getToken(response?.data?.accessToken));
+        dispatch(getToken(response?.accessToken));
         navigate(`/`);
       } catch (error) {
         console.log(error);

@@ -6,7 +6,6 @@ const ProductDetails = () => {
 
   const finalPrice = Math.round(((100 - DISCOUNT_PERCENTAGE) / 100) * selectedProduct?.price);
   const discountedPrice = selectedProduct?.price - finalPrice;
-  console.log(discountedPrice);
   return (
     <div>
       <section className="p-2">
