@@ -65,7 +65,7 @@ const Auth = () => {
           }
         );
         dispatch(getAdmin(response?.data?.data?.admin));
-        dispatch(getToken(response?.accessToken));
+        dispatch(getToken(response?.data?.accessToken));
         navigate("/");
       } catch (error) {
         console.log(error);
