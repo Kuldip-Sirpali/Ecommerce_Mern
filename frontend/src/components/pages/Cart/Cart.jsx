@@ -34,8 +34,8 @@ const Cart = () => {
       {/* Cart Section */}
       <section className="flex-2 w-full lg:w-2/3">
         {items.length > 0 ? (
-    
-        
+
+
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {items.map((item) => (
               <div
@@ -52,7 +52,7 @@ const Cart = () => {
                   <img src={item?.image} alt={item?.title} />
                 </div>
                 <h2 className="text-lg ">{item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}</h2>
-                <Button onClick={() => handleRemoveFromCart(item?._id)} className="bg-red-400" >Add to cart</Button>
+                <Button onClick={() => handleRemoveFromCart(item?._id)} className="bg-red-400" >Remove from cart</Button>
               </div>
             ))}
           </div>
