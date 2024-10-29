@@ -7,7 +7,7 @@ const options = {
   httpOnly: true,
   secure: true,
   sameSite: "None",
-  expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // Expires in 1days
+  expires: new Date(Date.now() +  60 * 60 * 1000), // Expires in 1h
 };
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
