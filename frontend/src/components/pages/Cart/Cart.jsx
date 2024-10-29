@@ -11,6 +11,7 @@ const Cart = () => {
   const { items, totalQuantity, totalPrice } = useSelector(
     (state) => state.cart
   );
+  const finalTotalAmount = (100 - DISCOUNT_PERCENTAGE) / 100 * totalPrice;
   const { user } = useSelector((state) => state.customer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,8 +35,8 @@ const Cart = () => {
       {/* Cart Section */}
       <section className="flex-2 w-full lg:w-2/3">
         {items.length > 0 ? (
-    
-        
+
+
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {items.map((item) => (
               <div
@@ -84,7 +85,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between text-lg text-gray-600 mb-4">
             <span>Final Amount:</span>
-            <span>Rs. {totalPrice}</span>
+            <span>Rs. {finalTotalAmount}</span>
           </div>
 
           <Button className="bg-green-500 text-white w-full py-3 rounded-md hover:bg-green-600 transition-colors duration-300">

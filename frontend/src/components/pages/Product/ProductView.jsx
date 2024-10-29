@@ -36,7 +36,7 @@ const ProductView = () => {
       <section className="w-full md:w-8/12 lg:w-4/12 h-full bg-white p-4 ">
         <div className=" h-auto w-64 md:h-80 zoom-image-main-container  p-4  flex flex-col gap-2   ">
           <ImageZoom src={selectedProduct?.image} />
-          <Button onClick={handleAddToCart} className="bg-green-500" >Add to cart</Button>
+          <Button onClick={handleAddToCart} className="bg-[#38a3a5]" >Add to cart</Button>
 
 
 

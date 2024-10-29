@@ -44,7 +44,7 @@ const SearchPage = () => {
               <h2 className="text-lg ">{item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}</h2>
 
               <h3 className='text-green-400'>Rs.{item.price}</h3>
-              <Button onClick={() => handleAddToCart(item)} className="bg-green-500">Add to cart</Button>
+              <Button onClick={() => handleAddToCart(item)} className="bg-[#38a3a5]">Add to cart</Button>
             </div>
           ))}
         </div>
