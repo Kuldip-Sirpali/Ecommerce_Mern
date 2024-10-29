@@ -7,7 +7,7 @@ const options = {
   httpOnly: true,
   secure: true,
   sameSite: "None",
-  expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Expires in 30days
+  expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // Expires in 1days
 };
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -77,7 +77,7 @@ export const signInUser = asyncHandler(async (req, res) => {
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, {
       ...options,
-      expires: new Date(Date.now() + 100 * 24 * 60 * 60 * 1000),
+      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
     })
     .json(
       new ApiResponse(
