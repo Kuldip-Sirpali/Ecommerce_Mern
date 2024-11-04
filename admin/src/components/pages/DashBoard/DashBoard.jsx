@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "react-avatar";
 
-import { getAdmin, getToken } from "../../../redux/adminSlice";
+import { getAdmin } from "../../../redux/adminSlice";
 import { handleLogOut } from "../../../API/handler";
 const Dashboard = () => {
-  const { admin, token } = useSelector((state) => state.appAdmin);
+  const { admin } = useSelector((state) => state.appAdmin);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,14 +18,8 @@ const Dashboard = () => {
   const removeDataWithLogOut = async () => {
     handleLogOut();
     dispatch(getAdmin(null));
-    dispatch(getToken(null));
     navigate("/auth");
   };
-  useEffect(() => {
-    if (!token) {
-      dispatch(getAdmin(null));
-    }
-  }, [token]);
   return (
     <>
       <div className="p-6 bg-white shadow-md rounded-lg max-w-md mx-auto">

@@ -6,12 +6,7 @@ import { User } from "../models/user.model.js";
 import { Product } from "../models/product.model.js";
 import { v2 as cloudinary } from "cloudinary";
 import { uploadOnCloudinary } from "../utils/cloudinaryUploader.js";
-const options = {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  expires: new Date(Date.now() +  60 * 60 * 1000), // Expires in 1h
-};
+
 const generateAccessAndRefreshTokens = async (adminId) => {
   try {
     const admin = await Admin.findById(adminId);
@@ -84,10 +79,17 @@ export const logInAdmin = asyncHandler(async (req, res) => {
   );
   return res
     .status(200)
-    .cookie("accessToken", accessToken, options)
+    .cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    })
     .cookie("refreshToken", refreshToken, {
-      ...options,
-      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     })
     .json(
       new ApiResponse(
@@ -120,12 +122,10 @@ export const logOutAdmin = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
     })
     .clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
     })
     .json(new ApiResponse(200, {}, "Admin logged out successfully"));
 });

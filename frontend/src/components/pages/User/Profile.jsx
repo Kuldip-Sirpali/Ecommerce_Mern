@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../Button";
 import axios from "axios";
-import { getToken, getUser } from "../../../redux/userSlice";
+import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import curveBg from "/images/bg-curve.svg";
 import { BACKEND_URL } from "../../../utils/constants";
+import { getProducts } from "../../../redux/productSlice";
 const Profile = () => {
   const { user } = useSelector((state) => state.customer);
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Profile = () => {
     try {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signOut`);
       dispatch(getUser(null));
-      dispatch(getToken(null))
+      dispatch(getProducts(null));
       navigate("/auth");
     } catch (error) {
       console.log(error);

@@ -3,12 +3,6 @@ import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-const options = {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-};
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -74,10 +68,15 @@ export const signInUser = asyncHandler(async (req, res) => {
   );
   return res
     .status(200)
-    .cookie("accessToken", accessToken, options)
+    .cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    })
     .cookie("refreshToken", refreshToken, {
-      ...options,
-      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+      secure: true,
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     })
     .json(
       new ApiResponse(
@@ -110,12 +109,12 @@ export const signOutUser = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      
     })
     .clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+     
     })
     .json(new ApiResponse(200, {}, "User signout successfully"));
 });

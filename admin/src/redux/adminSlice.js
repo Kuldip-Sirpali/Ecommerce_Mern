@@ -7,7 +7,7 @@ export const adminSlice = createSlice({
     users: null,
     products: null,
     refresh: true,
-    token: null,
+    
   },
 
   reducers: {
@@ -23,13 +23,11 @@ export const adminSlice = createSlice({
     getRefresh: (state) => {
       state.refresh = !state.refresh;
     },
-    getToken: (state, action) => {
-      state.token = action.payload;
-    },
+ 
   },
 });
 
-export const { getAdmin, getUsers, getProducts, getRefresh, getToken } =
+export const { getAdmin, getUsers, getProducts, getRefresh } =
   adminSlice.actions;
 
 export default adminSlice.reducer;

@@ -6,7 +6,7 @@ import { MdOutlineMail } from "react-icons/md";
 import Button from "../../Button";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getToken, getUser } from "../../../redux/userSlice";
+import {  getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../../utils/constants";
 const Auth = () => {
@@ -55,7 +55,6 @@ const Auth = () => {
           }
         );
         dispatch(getUser(response?.data?.data?.user));
-        dispatch(getToken(response?.data?.data?.accessToken));
         navigate(`/`);
       } catch (error) {
         console.log(error);

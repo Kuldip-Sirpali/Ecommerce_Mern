@@ -1,17 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Slideshow from "./SlideShow";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../../redux/userSlice";
 const Home = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.customer);
-  useEffect(() => {
-    if (!token) {
-      dispatch(getUser(null));
-    }
-  }, [token]);
+
   return (
     <>
       <section className="w-full  md:p-1 flex justify-center">
