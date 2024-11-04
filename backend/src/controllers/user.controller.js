@@ -71,11 +71,13 @@ export const signInUser = asyncHandler(async (req, res) => {
     .cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: true,
+      sameSite: "None",
       expires: new Date(Date.now() + 60 * 60 * 1000),
     })
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: true,
+      sameSite: "None",
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     })
     .json(
@@ -109,12 +111,10 @@ export const signOutUser = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", {
       httpOnly: true,
       secure: true,
-      
     })
     .clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
-     
     })
     .json(new ApiResponse(200, {}, "User signout successfully"));
 });
