@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { handleDeleteUser } from "../../../API/handler";
-
+import { getRefresh } from "../../../redux/adminSlice"
 const ViewUser = () => {
   const { users } = useSelector((state) => state.appAdmin);
   const { id } = useParams();
