@@ -122,10 +122,12 @@ export const logOutAdmin = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", {
       httpOnly: true,
       secure: true,
+      sameSite: "None",
     })
     .clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
+      sameSite: "None",
     })
     .json(new ApiResponse(200, {}, "Admin logged out successfully"));
 });
