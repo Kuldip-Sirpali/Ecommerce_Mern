@@ -6,6 +6,7 @@ import {
   getAllUsers,
   logInAdmin,
   logOutAdmin,
+  refreshAccessToken,
   registerAdmin,
 } from "../controllers/admin.controller.js";
 import {
@@ -17,6 +18,7 @@ const router = Router();
 router.route("/register").post(upload.single("image"), registerAdmin);
 router.route("/logIn").post(logInAdmin);
 router.route("/logOut").post(verifyAdminJWT, logOutAdmin);
+router.route("/refresh-token").post(refreshAccessToken);
 router.route("/get-all-users").get(verifyAdminJWT, verifyAdmin, getAllUsers);
 router.route("/get-all-products").get(verifyAdminJWT, verifyAdmin, getAllProducts);
 router.route("/delete-product").delete(verifyAdminJWT,verifyAdmin,deleteProduct);
