@@ -22,17 +22,17 @@ const NavBar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="w-full bg-[#80ed99] flex flex-col sticky top-0 z-40">
+    <div className="w-full  flex flex-col sticky top-0 z-40">
       {/* Beta Mode Alert */}
       <section className="w-full bg-black text-white text-center text-sm py-1">
         App is currently running in beta mode
       </section>
 
       {/* Navbar */}
-      <div className="w-full flex items-center justify-between px-4 py-2 md:px-10  bg-[#80ed99]">
+      <div className="w-full flex items-center justify-between px-4 py-2 md:px-10  bg-[#70e000]">
         {/* Brand */}
         <NavLink className="text-white font-semibold text-lg md:text-xl" to="/">
-          eCom
+          eCoLAB
         </NavLink>
 
         {/* Search and Nav Links - Visible in a row on larger screens */}
@@ -44,11 +44,11 @@ const NavBar = () => {
           </div>
 
           {/* Navigation Items */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ">
             {navItems.slice(0, 7).map((item) => (
               <NavLink
                 to={item.path}
-                className="text-black hover:text-white transition duration-200"
+                className="text-white hover:text-white transition duration-200"
                 key={item.name}
               >
                 {item.name}
@@ -77,7 +77,7 @@ const NavBar = () => {
 
       {/* Mobile Dropdown Menu - Toggled by the Hamburger icon */}
       <div
-        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-[#80ed99] shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-[#70e000] shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
           } md:hidden z-50`}
       >
         <div className="flex flex-col p-4 gap-4">
@@ -105,14 +105,14 @@ const NavBar = () => {
 
           {/* Mobile Search Bar */}
           <div className="w-full">
-            <Search className="bg-[#80ed99]" /> {/* Smaller search bar for mobile */}
+            <Search className="bg-[#70e000]" /> {/* Smaller search bar for mobile */}
           </div>
 
           {/* Navigation Items */}
           {navItems.slice(0, 7).map((item) => (
             <NavLink
               to={item.path}
-              className="text-black rounded-md hover:bg-gray-100 p-2"
+              className="text-white rounded-md hover:bg-gray-100 hover:text-black p-2"
               key={item.name}
               onClick={toggleMenu} // Close the menu on click
             >

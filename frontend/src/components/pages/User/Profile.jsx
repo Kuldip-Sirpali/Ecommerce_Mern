@@ -30,14 +30,17 @@ const Profile = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-50"
+      className="h-screen flex items-center justify-center bg-gray-50"
       style={{
         background: `url(${curveBg})`,
       }}
     >
       <section className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg flex flex-col ">
-        <h1 className="text-3xl md:text-4xl text-gray-800 mb-6">
-          Warm welcome {user && user.fullName}
+        <h1 className="text-3xl text-center md:text-4xl text-gray-800 mb-6">
+          Warm welcome to you{" "}
+          <span className="text-[#70e000] text-5xl">
+            {user && user.fullName} !!
+          </span>
         </h1>
 
         <div className="w-full text-left mb-6">
@@ -54,7 +57,8 @@ const Profile = () => {
 
         <Button
           onClick={handleSignOut}
-          className="w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300"
+          className="w-full py-2 px-4 bg-[#70e000] text-white font-semibold rounded-lg
+           hover:bg-[#38b000] transition duration-300"
         >
           Sign out
         </Button>

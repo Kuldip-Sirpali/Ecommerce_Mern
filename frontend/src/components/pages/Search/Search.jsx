@@ -23,8 +23,8 @@ const Search = () => {
   return (
     <form action="#" onSubmit={handleSearch}>
       <section className='px-4 py-2  rounded-full bg-white flex items-center  gap-6' >
-        <input type="search" required name="search" id="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search' className='bg-transparent pl-2 outline-none' autoComplete='off' />
-        <button type='submit' className='bg-green-300 text-white cursor-pointer p-1 rounded-full'>
+        <input type="search" required name="search" id="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search the best products...' className='bg-transparent pl-2 outline-none' autoComplete='off' />
+        <button type='submit' className='bg-[#70e000] text-white cursor-pointer p-1 rounded-full'>
           <FaSearch />
         </button>
 

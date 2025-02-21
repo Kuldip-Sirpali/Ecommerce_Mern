@@ -60,7 +60,7 @@ const Store = () => {
 
             <Button
               onClick={() => handleAddToCart(item)}
-              className="bg-[#38a3a5]"
+              className="bg-[#70e000]"
             >
               Add to cart
             </Button>

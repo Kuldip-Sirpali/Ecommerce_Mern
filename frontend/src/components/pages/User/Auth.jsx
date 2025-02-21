@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
-import { BiRename } from "react-icons/bi";
+import { BiLoader, BiRename } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import Button from "../../Button";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {  getUser } from "../../../redux/userSlice";
+import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../../utils/constants";
 const Auth = () => {
   const [isUserSignIn, setIsUserSignIn] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleIsUserSignIn = () => {
@@ -40,6 +41,7 @@ const Auth = () => {
     formData.append("email", userDetails?.email);
     formData.append("password", userDetails?.password);
 
+    setLoading(true);
     if (isUserSignIn) {
       try {
         const response = await axios.post(
@@ -58,18 +60,26 @@ const Auth = () => {
         navigate(`/`);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     } else {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/register`, formData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.post(
+          `${BACKEND_URL}/api/v1/user/register`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         setIsUserSignIn(!isUserSignIn);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -80,12 +90,12 @@ const Auth = () => {
         {/* logo  */}
         <div
           onClick={() => navigate("/home")}
-          className="cursor-pointer text-4xl flex text-red-600  justify-center"
+          className="cursor-pointer text-4xl flex justify-center"
         >
-          {/* <SiMusicbrainz /> */}
+       
         </div>
 
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-green-400">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#70e000]">
           {isUserSignIn ? "Sign in to your account" : "Sign up now !"}
         </h2>
       </div>
@@ -142,6 +152,14 @@ const Auth = () => {
                       </div>
                     </div>
                   </div>
+                  <Button
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-[#70e000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#38b000] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600  border-[0.4px] border-white"
+                  >
+                    {
+                      loading ? <BiLoader /> : "Sign In"
+                    }
+                  </Button>
                 </div>
               }
             </>
@@ -210,17 +228,19 @@ const Auth = () => {
                   </div>
                 </div>
               </div>
-              <div></div>
+
+              <Button
+               type="submit"
+                    className="flex w-full justify-center rounded-md bg-[#70e000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#38b000] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600  border-[0.4px] border-white"
+              >
+                {
+                  loading ? <BiLoader /> : "Sign Up"
+                }
+              </Button>
+
             </>
           )}
-          <div>
-            <Button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-green-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600  border-[0.4px] border-white"
-            >
-              {isUserSignIn ? "Sign In" : "Sign up"}
-            </Button>
-          </div>
+
         </form>
 
         <div className="mt-3 w-full  text-sm text-black">

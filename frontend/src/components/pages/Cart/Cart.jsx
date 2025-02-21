@@ -53,12 +53,12 @@ const Cart = () => {
                   <img src={item?.image} alt={item?.title} />
                 </div>
                 <h2 className="text-lg ">{item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}</h2>
-                <Button onClick={() => handleRemoveFromCart(item?._id)} className="bg-red-400" >Remove from cart</Button>
+                <Button onClick={() => handleRemoveFromCart(item?._id)} className="bg-red-600" >Remove from cart</Button>
               </div>
             ))}
           </div>
         ) : (
-          <section className=" h-64 font-semibold mt-4 text-center  flex items-center  justify-center flex-col text-green-400  ">
+          <section className=" h-64 font-semibold mt-4 text-center  flex items-center  justify-center flex-col text-[#70e000]  ">
             {" "}
             <div className="text-8xl">
               <BsCart4 />
@@ -88,7 +88,7 @@ const Cart = () => {
             <span>Rs. {finalTotalAmount}</span>
           </div>
 
-          <Button className="bg-green-500 text-white w-full py-3 rounded-md hover:bg-green-600 transition-colors duration-300">
+          <Button className="bg-[#70e000] text-white w-full py-3 rounded-md hover:bg-green-600 transition-colors duration-300">
             Purchase
           </Button>
         </div>

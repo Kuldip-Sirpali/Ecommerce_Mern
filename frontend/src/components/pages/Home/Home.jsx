@@ -12,13 +12,13 @@ const Home = () => {
       <section>
         <div className=" container mx-auto px-4 py-8  ">
           <h1 className="md:text-8xl text-5xl font-bold text-center">
-            Get upto <span className="text-white bg-green-700">50%</span>{" "}
+            Get upto <span className="">50%</span>{" "}
             discount in this festival season
           </h1>
           <div className="w-full text-center  p-3">
             <button
               onClick={() => navigate("/store")}
-              className="bg-green-400  text-white px-8 py-2 rounded-md hover:bg-green-600"
+              className="bg-[#70e000]  text-white px-20 py-2 text-xl rounded-full hover:bg-[#38b000]"
             >
               Visit store
             </button>
