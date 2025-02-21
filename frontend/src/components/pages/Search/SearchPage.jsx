@@ -20,7 +20,12 @@ const SearchPage = () => {
   return (
     <section className='p-4 min-h-screen'>
 
-      <p className='text-green-400 p-2 text-2xl'> Search results  for : {query}</p>
+      <p className='text-[#70e000] p-2 text-2xl'> Search results  for :
+
+        <span className='text-3xl text-[#38b000]'>
+          {query}
+
+        </span></p>
 
       {searchProducts.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -44,13 +49,13 @@ const SearchPage = () => {
               <h2 className="text-lg ">{item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}</h2>
 
               <h3 className='text-green-400'>Rs.{item.price}</h3>
-              <Button onClick={() => handleAddToCart(item)} className="bg-[#38a3a5]">Add to cart</Button>
+              <Button onClick={() => handleAddToCart(item)} className="bg-[#70e000]">Add to cart</Button>
             </div>
           ))}
         </div>
       ) : (
         <div className='w-full   flex justify-center  flex-col items-center gap-4 '>
-          <p className='text-3xl text-green-500'> No result found.</p>
+          <p className='text-3xl text-[#70e000]'> No result found.</p>
           <p className='text-xl'>Please check the query properly</p>
         </div>
       )
