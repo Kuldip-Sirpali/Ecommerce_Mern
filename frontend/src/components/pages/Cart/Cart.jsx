@@ -48,7 +48,7 @@ const Cart = () => {
                   onClick={() => {
                     navigate(`/product/${item?._id}`);
                   }}
-                  className="h-64 w-full overflow-hidden bg-green-300 flex items-center justify-center "
+                  className="h-64 w-full overflow-hidden flex items-center justify-center "
                 >
                   <img src={item?.image} alt={item?.title} />
                 </div>
@@ -69,7 +69,7 @@ const Cart = () => {
       </section>
 
       {/* Sidebar Section */}
-      <section className="lg:w-1/3 mt-8 lg:mt-0">
+      <section className="lg:w-1/3 mt-8 lg:mt-0 md:fixed md:right-0">
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Cart Summary
@@ -88,7 +88,7 @@ const Cart = () => {
             <span>Rs. {finalTotalAmount}</span>
           </div>
 
-          <Button className="bg-[#70e000] text-white w-full py-3 rounded-md hover:bg-green-600 transition-colors duration-300">
+          <Button className="bg-[#70e000] text-white w-full py-3 rounded-md hover:bg-[#38b000] transition-colors duration-300">
             Purchase
           </Button>
         </div>
