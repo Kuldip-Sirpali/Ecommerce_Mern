@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Search from "./pages/Search/Search";
 import { RiMenu3Fill } from "react-icons/ri";
+import { FaArrowRight } from "react-icons/fa";
 
 const NavBar = () => {
   const { totalQuantity } = useSelector((state) => state.cart);
@@ -23,16 +24,16 @@ const NavBar = () => {
 
   return (
     <div className="w-full  flex flex-col sticky top-0 z-40">
-      {/* Beta Mode Alert */}
-      <section className="w-full bg-black text-white text-center text-sm py-1">
-        App is currently running in beta mode
-      </section>
+      {/* Beta Mode Alert
+      <section className=" w-full flex items-center justify-center bg-[#9ef01a] text-white text-center text-sm py-1">
+        App is currently running in beta mode <FaArrowRight />
+      </section> */}
 
       {/* Navbar */}
       <div className="w-full flex items-center justify-between px-4 py-2 md:px-10  bg-[#70e000]">
         {/* Brand */}
-        <NavLink className="text-white font-semibold text-lg md:text-xl" to="/">
-          eCoLAB
+        <NavLink className="text-white font-bold  text-2xl md:text-3xl" to="/">
+          ecomartia
         </NavLink>
 
         {/* Search and Nav Links - Visible in a row on larger screens */}
@@ -48,7 +49,7 @@ const NavBar = () => {
             {navItems.slice(0, 7).map((item) => (
               <NavLink
                 to={item.path}
-                className="text-white hover:text-white transition duration-200"
+                className="text-white hover:text-black transition duration-200"
                 key={item.name}
               >
                 {item.name}
@@ -105,7 +106,8 @@ const NavBar = () => {
 
           {/* Mobile Search Bar */}
           <div className="w-full">
-            <Search className="bg-[#70e000]" /> {/* Smaller search bar for mobile */}
+            <Search className="bg-[#70e000]" />{" "}
+            {/* Smaller search bar for mobile */}
           </div>
 
           {/* Navigation Items */}

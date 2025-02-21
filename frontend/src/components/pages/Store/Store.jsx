@@ -47,7 +47,7 @@ const Store = () => {
               onClick={() => {
                 navigate(`/product/${item?._id}`);
               }}
-              className="h-64 w-full overflow-hidden bg-white border-2 border-[#80ed99 ] flex items-center justify-center "
+              className="h-64 w-full overflow-hidden bg-white border-2 border-[#80ed99 ] flex items-center justify-center  cursor-pointer"
             >
               <img loading="lazy" src={item?.image} alt={item?.title} />
             </div>
@@ -56,11 +56,11 @@ const Store = () => {
                 ? `${item.title.slice(0, 20)}...`
                 : item.title}
             </h2>
-            <h3 className='text-green-400 text-sm'>Rs.{item.price}</h3>
+            <h3 className='text-[#38b000] text-sm'>Rs.{item.price}</h3>
 
             <Button
               onClick={() => handleAddToCart(item)}
-              className="bg-[#70e000]"
+              className="bg-[#70e000] hover:bg-[#38b000]"
             >
               Add to cart
             </Button>

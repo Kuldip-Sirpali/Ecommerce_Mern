@@ -40,7 +40,15 @@ const Category = () => {
   }
   return (
     <div className=" container mx-auto px-4 py-8 min-h-screen">
-      <h1 className="text-2xl  mb-4">CATEGORY: {categoryName.toLocaleUpperCase()}</h1>
+      <h1 className="text-2xl  mb-4">CATEGORY: <span className='text-[#70e000] font-bold'>
+
+        {categoryName.toLocaleUpperCase()}
+      </span>
+
+
+
+
+      </h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {products.map((item) => (
           <div
@@ -61,8 +69,8 @@ const Category = () => {
 
             <h2 className="text-lg ">{item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}</h2>
 
-            <h3 className='text-green-400 text-sm'>Rs.{item.price}</h3>
-            <Button onClick={() => handleAddToCart(item)} className="bg-[#70e000]">Add to cart</Button>
+            <h3 className='text-[#38b000] text-sm'>Rs.{item.price}</h3>
+            <Button onClick={() => handleAddToCart(item)} className="bg-[#70e000] hover:bg-[#38b000]">Add to cart</Button>
           </div>
         ))}
       </div>
