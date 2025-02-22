@@ -1,9 +1,11 @@
-.zoom-image-main-container:hover .img-zoom-result  {
+.zoom-image-main-container:hover .img-zoom-result {
   display: block;
 }
-.zoom-image-main-container:hover .img-zoom-lens{
+
+.zoom-image-main-container:hover .img-zoom-lens {
   display: block;
 }
+
 .img-zoom-container {
   position: relative;
 }
@@ -24,4 +26,26 @@
   width: 500px;
   height: 500px;
   background-repeat: no-repeat; */
+}
+
+/* Scrollbar */
+.overflow-auto::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.overflow-auto::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb {
+  background-color: #65ee09;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280;
 }

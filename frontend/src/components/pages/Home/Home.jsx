@@ -99,7 +99,7 @@ const Home = () => {
       </section> */}
 
 
-      <section className="relative w-full h-screen bg-cover bg-center " style={{ backgroundImage: "url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGVjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D')" }}>
+      <section className="relative bg-black w-full h-screen bg-cover bg-center " style={{ backgroundImage: "url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGVjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D')" }}>
         <div className="w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-6 sm:px-12">
           <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 text-center animate__animated animate__fadeIn animate__delay-1s">
             Unleash Your Style. Unleash Your Potential!

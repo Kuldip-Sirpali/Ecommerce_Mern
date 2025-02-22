@@ -1,19 +1,21 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../Button';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { addToCart } from '../../../redux/cartSlice';
 import { FaCartArrowDown } from 'react-icons/fa';
 
 const SearchPage = () => {
+
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("query"); // Get the 'query' parameter from the URL
   const navigate = useNavigate()
   const { searchProducts } = useSelector((state) => state.items);
   const { user } = useSelector((state) => state.customer);
-  const { query } = useParams();
   const dispatch = useDispatch();
   const handleAddToCart = (item) => {
     if (!user) {
-      navigate("/auth");
+      navigate("/sign-in");
       return;
     }
     dispatch(addToCart(item));
@@ -21,10 +23,10 @@ const SearchPage = () => {
   return (
     <section className='p-4 min-h-screen'>
 
-      <p className='text-[#70e000] p-2 text-2xl'> Search results  for :
+      <p className='text-[#70e000] p-2 text-2xl'> Search results  for : 
 
         <span className='text-3xl font-bold text-[#38b000]'>
-          " {query} "
+            {query}
 
         </span></p>
 
@@ -87,25 +89,24 @@ const SearchPage = () => {
             //     Add to Cart
             //   </Button>
             // </div>
-            <div className="bg-white shadow-lg rounded-lg p-4   transform border border-[#80d459] transition-all duration-300">
+
+            <div className="bg-white shadow-lg rounded-lg p-2  transform border border-[#80d459] transition-all  duration-1000 " key={item._id}>
               <div
                 style={{
                   backgroundImage: `url(${item?.image})`,
-                  backgroundSize: "cover",
+                  backgroundSize: "contain",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
-                className="h-56 w-full overflow-hidden bg-gray-100 flex items-center justify-center cursor-pointer rounded-t-md group relative"
+                className="h-36 w-full overflow-hidden bg-gray-100 flex items-center justify-center cursor-pointer rounded-t-md group relative"
                 onClick={() => navigate(`/product/${item?._id}`)}
-              >
-                <div className="absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              ></div>
 
-                </div>
-              </div>
-
-              <div className="p-3 text-left">
+              <div className="p-1 text-left">
                 <h2 className="text-lg font-semibold text-gray-800 truncate">
-                  {item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}
+                  {item.title.length > 20
+                    ? `${item.title.slice(0, 20)}...`
+                    : item.title}
                 </h2>
                 <h3 className="text-[#38b000] text-md font-medium mt-1">
                   Rs. {item.price}

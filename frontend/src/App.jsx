@@ -9,14 +9,19 @@ import Category from "./components/pages/Category/Category";
 import ProductView from "./components/pages/Product/ProductView";
 import Cart from "./components/pages/Cart/Cart";
 import SearchPage from "./components/pages/Search/SearchPage";
-import Auth from "./components/pages/User/Auth";
+import Auth from "./components/pages/User/SignIn";
 import Profile from "./components/pages/User/Profile";
 import { useEffect } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "./utils/constants";
+import SignUp from "./components/pages/User/SignUp";
+import SignIn from "./components/pages/User/SignIn";
+import VerifyEmail from "./components/pages/User/VerifyEmail";
+import ErrorPage from "./components/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage />,
     element: <Container />,
     children: [
       {
@@ -24,8 +29,17 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/auth",
-        element: <Auth />,
+        path: "/sign-up",
+        element: <SignUp />
+      },
+      {
+
+        path: "/verify-email",
+        element: <VerifyEmail />
+      },
+      {
+        path: "/sign-in",
+        element: <SignIn />,
       },
       {
         path: "/profile",
@@ -48,7 +62,7 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "/search/:query",
+        path: "/search",
         element: <SearchPage />,
       },
     ],

@@ -3,6 +3,31 @@ import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+//function to send verification code
+const sendVerifcationCode = async (email, fullName, verificationCode) => {
+  const { data, error } = await resend.emails.send({
+    from: "ecomartia <onboarding@resend.dev>",
+    to: email,
+    subject: "Email Verification",
+    html: `<h1> Hello ${fullName}  ,here is your email verification code : ${verificationCode} </h1>`,
+  });
+
+  if (error) {
+    return console.error({ error });
+  }
+
+  return {
+    success: true,
+    message: "Verification code send successfully",
+  };
+};
+
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -29,20 +54,69 @@ export const registerUser = asyncHandler(async (req, res) => {
   if (existedUser) {
     throw new ApiError(401, "User with this email already exists");
   }
+  const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
+  const expiryDate = new Date();
+  expiryDate.setHours(expiryDate.getHours() + 1);
   const user = await User.create({
     fullName,
     email: email.toLowerCase(),
     password,
+    verificationCode,
+    verificationCodeExpiry: expiryDate,
+    isVerified: false,
   });
+
   const createdUser = await User.findById(user?._id).select(
     "-password -refreshToken"
   );
   if (!createdUser) {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
+  const emailResponse = await sendVerifcationCode(
+    email,
+    fullName,
+    verificationCode
+  );
+  console.log(emailResponse);
+  if (!emailResponse) {
+    return res
+      .status(500)
+      .json(new ApiResponse(500, {}, "Failed to send verification email"));
+  }
   return res
-    .status(202)
-    .json(new ApiResponse(202, createdUser, "Account created successfully"));
+    .status(200)
+    .json(new ApiResponse(200, createdUser, "Account created successfully"));
+});
+export const verifyCode = asyncHandler(async (req, res) => {
+  const { verificationCode, email } = req.body;
+  if (!verificationCode || !email) {
+    return res
+      .status(400)
+      .json(new ApiResponse(400, {}, "Credientials are required"));
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(400).json(new ApiResponse(400, {}, "No user found"));
+  }
+
+  const isCodeValid = user?.verificationCode === verificationCode;
+  const isCodeNotExpired = new Date(user?.verificationCodeExpiry) > new Date();
+  if (!isCodeValid) {
+    return res
+      .status(400)
+      .json(new ApiResponse(400, {}, "Invalid verification code"));
+  } else if (!isCodeNotExpired) {
+    return res
+      .status(400)
+      .json(new ApiResponse(200, {}, "Verification code has expired"));
+  } else {
+    user.isVerified = true;
+    await user.save();
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Email verified successfully"));
 });
 
 export const signInUser = asyncHandler(async (req, res) => {

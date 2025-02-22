@@ -118,14 +118,55 @@ export const searchProduct = asyncHandler(async (req, res) => {
   if (!query) {
     throw new ApiError(400, "No query available");
   }
+  // const products = await Product.find({
+  //   $or: [
+  //     { title: { $regex: query, $options: "i" } }, // Case-insensitive search
+  //     { description: { $regex: query, $options: "i" } },
+  //     { tags: { $regex: query, $options: "i" } },
+  //     { category: { $regex: query, $options: "i" } },
+  //   ],
+  // }).limit(10);
+
   const products = await Product.find({
     $or: [
-      { title: { $regex: query, $options: "i" } }, // Case-insensitive search
-      { description: { $regex: query, $options: "i" } },
-      { tags: { $regex: query, $options: "i" } },
-      { category: { $regex: query, $options: "i" } },
+      { title: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the title
+      { description: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the description
+      { tags: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the tags
+      { category: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the category
+
+      // Handle singular and plural forms (e.g., "device" and "devices")
+      {
+        title: {
+          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
+          $options: "i",
+        },
+      }, // Singular/plural match in title
+      {
+        description: {
+          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
+          $options: "i",
+        },
+      },
+      {
+        tags: {
+          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
+          $options: "i",
+        },
+      },
+      {
+        category: {
+          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
+          $options: "i",
+        },
+      },
+
+      // Match phrases like "electrical devices", "best device", etc.
+      { title: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in title
+      { description: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in description
+      { tags: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in tags
+      { category: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in category
     ],
-  });
+  }).limit(10);
 
   if (!products) {
     throw new ApiError(500, "No result found");

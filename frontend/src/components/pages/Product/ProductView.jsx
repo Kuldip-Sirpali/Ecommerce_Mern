@@ -9,6 +9,7 @@ import ImageZoom from './ImageZoom';
 import Button from '../../Button';
 import ProductDetails from './ProductDetails';
 import { addToCart } from '../../../redux/cartSlice';
+import { FaCartArrowDown } from 'react-icons/fa';
 const ProductView = () => {
   const { id } = useParams();
   useGetProduct(id)
@@ -25,7 +26,7 @@ const ProductView = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/auth");
+      navigate("/sign-in");
     }
 
   }, []);
@@ -36,8 +37,14 @@ const ProductView = () => {
       <section className="w-full md:w-8/12 lg:w-4/12 h-full bg-white p-4 ">
         <div className=" h-auto w-64 md:h-80 zoom-image-main-container  p-4  flex flex-col gap-2   ">
           <ImageZoom src={selectedProduct?.image} />
-          <Button onClick={handleAddToCart} className="bg-[#70e000]" >Add to cart</Button>
+          {/* <Button onClick={handleAddToCart} className="bg-[#70e000]" >Add to cart</Button> */}
 
+          <Button
+            onClick={handleAddToCart}
+            className="w-full px-4 py-2 bg-[#70e000] hover:bg-[#38b000] transition-colors text-white font-medium rounded-md mt-4"
+          >
+            Add to Cart <FaCartArrowDown className="inline-block ml-2" />
+          </Button>
 
 
 

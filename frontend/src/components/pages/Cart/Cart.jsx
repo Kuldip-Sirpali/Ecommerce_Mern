@@ -25,7 +25,7 @@ const Cart = () => {
   useEffect(() => {
     if (!user) {
 
-      navigate("/auth")
+      navigate("/sign-in")
     }
 
 
@@ -58,23 +58,23 @@ const Cart = () => {
               //   <Button onClick={() => handleRemoveFromCart(item?._id)} className="bg-red-600" >Remove from cart</Button>
               // </div>
 
-              <div className="bg-white shadow-lg rounded-lg p-4   transform border border-[#80d459] transition-all duration-300">
+              <div className="bg-white shadow-lg rounded-lg p-2   transform border border-[#80d459] transition-all  duration-1000 ">
                 <div
                   style={{
                     backgroundImage: `url(${item?.image})`,
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                   }}
-                  className="h-56 w-full overflow-hidden bg-gray-100 flex items-center justify-center cursor-pointer rounded-t-md group relative"
+                  className="h-36 w-full overflow-hidden bg-gray-100 flex items-center justify-center cursor-pointer rounded-t-md group relative"
                   onClick={() => navigate(`/product/${item?._id}`)}
                 >
-                  <div className="absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* <div className="absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 
-                  </div>
+                  </div> */}
                 </div>
 
-                <div className="p-3 text-left">
+                <div className="p-1 text-left">
                   <h2 className="text-lg font-semibold text-gray-800 truncate">
                     {item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}
                   </h2>
