@@ -6,13 +6,11 @@ import { MdOutlineMail } from "react-icons/md";
 import Button from "../../Button";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../../utils/constants";
 
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -51,8 +49,6 @@ const SignUp = () => {
         }
       );
       if (response.status === 200) {
-        console.log("me-test", response);
-
         localStorage.setItem(
           "tempData",
           JSON.stringify(response?.data?.data)

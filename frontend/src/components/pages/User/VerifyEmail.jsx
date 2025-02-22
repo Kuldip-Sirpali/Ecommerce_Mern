@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { BACKEND_URL } from "../../../utils/constants";
 import { useNavigate } from "react-router-dom";
 export default function VerifyEmail() {
-  const { user } = useSelector((state) => state.customer);
   const navigate = useNavigate();
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [error, setError] = useState("");
@@ -47,12 +45,10 @@ export default function VerifyEmail() {
       if (response.status === 200) {
         navigate("/sign-in");
         setLoading(false);
-
       }
       else {
         setError(response.data.message);
         setLoading(false);
-
       }
     }
   };

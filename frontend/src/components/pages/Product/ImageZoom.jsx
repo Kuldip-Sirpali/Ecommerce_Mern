@@ -53,11 +53,11 @@ const ImageZoom = ({ src }) => {
       return { x, y };
     };
 
-    // Add event listeners for mouse and touch events
+    // Add event listeners for mouse and touch events with passive option
     lens.addEventListener('mousemove', moveLens);
     img.addEventListener('mousemove', moveLens);
-    lens.addEventListener('touchmove', moveLens);
-    img.addEventListener('touchmove', moveLens);
+    lens.addEventListener('touchmove', moveLens, { passive: true });
+    img.addEventListener('touchmove', moveLens, { passive: true });
 
     return () => {
       // Cleanup event listeners
@@ -74,7 +74,7 @@ const ImageZoom = ({ src }) => {
     //   <img ref={imgRef} src={src} width={width} height={height} alt="Zoomable" />
     //   <div ref={resultRef} className="  ml-80 top-0 border-2 border-red-500 absolute w-[500px] h-[500px]"></div>
     // </div>
-    <div className="relative flex border-[1px] border-slate-700  ">
+    <div className="relative flex border-[1px] border-[#70e000]  ">
       <img
         ref={imgRef}
         src={src}
@@ -83,7 +83,7 @@ const ImageZoom = ({ src }) => {
       />
       <div
         ref={resultRef}
-        className="img-zoom-result  bg-white bg-no-repeat left-full ml-52 border-[1px] border-slate-700 w-60 h-60 md:w-[800px] md:h-[500px]">
+        className="img-zoom-result md:hidden  bg-white bg-no-repeat fixed top-24  right-8 border-[1px] border-[#70e000]  md:w-[836px] md:h-[500px]">
       </div>
     </div>
   );

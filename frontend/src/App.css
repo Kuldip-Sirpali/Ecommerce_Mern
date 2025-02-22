@@ -13,7 +13,7 @@
 .img-zoom-lens {
   position: absolute;
   border: 1px solid #d4d4d4;
-  background: linear-gradient(rgba(6, 8, 155, 0.2), rgba(21, 0, 97, 0.2), rgba(18, 146, 185, 0.2));
+  background: linear-gradient(rgba(74, 255, 3, 0.2), rgba(105, 255, 5, 0.2), rgba(187, 255, 0, 0.2));
   width: 80px;
   height: 80px;
   display: none;
@@ -22,10 +22,6 @@
 .img-zoom-result {
   position: absolute;
   display: none;
-  /* border: 1px solid #d4d4d4;
-  width: 500px;
-  height: 500px;
-  background-repeat: no-repeat; */
 }
 
 /* Scrollbar */
