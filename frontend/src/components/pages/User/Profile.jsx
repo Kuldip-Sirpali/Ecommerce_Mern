@@ -4,7 +4,7 @@ import Button from "../../Button";
 import axios from "axios";
 import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
-import pf from "../../../assets/pf.avif";
+import pf from "/images/PF.avif"
 import { BACKEND_URL } from "../../../utils/constants";
 import { getProducts } from "../../../redux/productSlice";
 const Profile = () => {
