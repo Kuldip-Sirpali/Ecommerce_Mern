@@ -2,7 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-
+import jwt from "jsonwebtoken";
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -153,8 +153,7 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: false,
-        expires: new Date(Date.now() + 60 * 60 * 1000),//1hr
-    
+        expires: new Date(Date.now() + 60 * 60 * 1000), //1hr
       })
       .cookie("refreshToken", refreshToken, {
         httpOnly: true,
