@@ -159,8 +159,6 @@ export const signInUser = asyncHandler(async (req, res) => {
         200,
         {
           user: signInUser,
-          accessToken,
-          refreshToken,
         },
         "User signIn Successfully"
       )
@@ -234,16 +232,7 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
         secure: false,
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       })
-      .json(
-        new ApiResponse(
-          200,
-          {
-            accessToken,
-            refreshToken,
-          },
-          "Access token refreshed"
-        )
-      );
+      .json(new ApiResponse(200, {}, "Access token refreshed"));
   } catch (error) {
     throw new ApiError(400, error?.message || "Invalid refresh token");
   }

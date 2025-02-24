@@ -78,8 +78,8 @@ const NavBar = () => {
 
       {/* Mobile Dropdown Menu - Toggled by the Hamburger icon */}
       <div
-        className={`fixed top-0 left-0 h-full w-full max-w-sm blury shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } md:hidden z-50 text-[#70e000]`}
+        className={`fixed top-0 left-0 h-full w-full max-w-sm bg-[#70e000] shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } md:hidden z-50 text-[#fff]`}
       >
         <div className="flex flex-col p-4 gap-4">
           {/* Close Menu Button */}
@@ -114,7 +114,7 @@ const NavBar = () => {
           {navItems.slice(0, 7).map((item) => (
             <NavLink
               to={item.path}
-              className=" rounded-full hover:bg-gray-100 hover:text-black p-2"
+              className=" rounded-full  hover:text-black p-2"
               key={item.name}
               onClick={toggleMenu} // Close the menu on click
             >
@@ -125,7 +125,7 @@ const NavBar = () => {
           {/* Cart with Total Quantity */}
           <NavLink
             to="/cart"
-            className=" rounded-md  hover:bg-gray-100  text-sm p-2"
+            className=" rounded-md  hover:text-black  text-sm p-2"
             onClick={toggleMenu}
           >
             Cart ({totalQuantity})

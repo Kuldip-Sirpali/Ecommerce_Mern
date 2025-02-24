@@ -92,6 +92,7 @@ const SignUp = () => {
                     value={userDetails.fullName}
                     onChange={handleInputChange}
                     required
+                    autoComplete="fullName"
                     className="w-full outline-none px-3  bg-transparent"
                   />
                 </div>
@@ -112,6 +113,7 @@ const SignUp = () => {
                     value={userDetails.email}
                     onChange={handleInputChange}
                     required
+                    autoComplete="email"
                     className="w-full outline-none px-3  bg-transparent"
                   />
                 </div>

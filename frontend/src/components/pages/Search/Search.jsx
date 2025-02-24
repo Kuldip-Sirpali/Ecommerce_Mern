@@ -562,11 +562,10 @@ const Search = () => {
           <input
             type="text"
             name="search"
-            id="search"
             value={query}
             onChange={handleInputChange}
             placeholder="Search the best products..."
-            className="bg-transparent w-full pl-2 pr-10 outline-none text-gray-700"
+            className=" search-input bg-transparent w-full pl-2 pr-10 outline-none text-gray-700"
             autoComplete="off"
             autoFocus
           />

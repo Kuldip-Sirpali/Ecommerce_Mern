@@ -6,9 +6,33 @@ import useGetProducts from "../../../hooks/useGetProducts";
 import ProductCard from "../../ProductCard";
 import { BiLoader } from "react-icons/bi";
 import CardSkeleton from "../../CardSkeleton";
+import { BACKEND_URL } from "../../../utils/constants";
+import axios from "axios";
 const Store = () => {
   const { user } = useSelector((state) => state.customer);
   const navigate = useNavigate();
+  useEffect(() => {
+    const refreshToken = async () => {
+      try {
+        axios.defaults.withCredentials = true;
+        await axios.post(
+          `${BACKEND_URL}/api/v1/user/refresh-token`
+        );
+      } catch (error) {
+        navigate("/sign-in");
+      }
+    };
+    // Refresh token every 1hr
+    const intervalId = setInterval(
+      refreshToken,
+      import.meta.env.VITE_ACCESS_TOKEN_EXPIRY
+    );
+
+    // Initial refresh
+    refreshToken();
+
+    return () => clearInterval(intervalId);
+  }, []);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [products] = useGetProducts(page, loading, setLoading);

@@ -1,5 +1,5 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
 
 import Home from "./components/pages/Home/Home";
 import Container from "./Container";
@@ -70,28 +70,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  useEffect(() => {
-    const refreshToken = async () => {
-      try {
-        axios.defaults.withCredentials = true;
-        const response = await axios.post(
-          `${BACKEND_URL}/api/v1/user/refresh-token`
-        );
-      } catch (error) {
-        console.log("Please sign in again to continue");
-      }
-    };
-    // Refresh token every 1hr
-    const intervalId = setInterval(
-      refreshToken,
-      import.meta.env.VITE_ACCESS_TOKEN_EXPIRY
-    );
 
-    // Initial refresh
-    refreshToken();
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <>
