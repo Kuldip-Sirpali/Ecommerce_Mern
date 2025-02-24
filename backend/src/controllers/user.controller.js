@@ -140,6 +140,9 @@ export const signInUser = asyncHandler(async (req, res) => {
   const signInUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
+  if (!signInUser) {
+    return res.status(400).json(new ApiResponse(400, {}, "User not found"));
+  }
   return res
     .status(200)
     .cookie("accessToken", accessToken, {
