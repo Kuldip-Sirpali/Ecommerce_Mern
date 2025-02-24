@@ -33,7 +33,7 @@ const Category = () => {
   const dispatch = useDispatch();
   const handleAddToCart = (item) => {
     if (!user) {
-      navigate("/auth");
+      navigate("/sign-in");
       return;
     }
     dispatch(addToCart(item));
