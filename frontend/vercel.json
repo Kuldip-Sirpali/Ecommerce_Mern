@@ -1,0 +1,23 @@
+
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/sign-up", "destination": "/index.html" },
+    { "source": "/verify-email", "destination": "/index.html" },
+    { "source": "/sign-in", "destination": "/index.html" },
+    { "source": "/profile", "destination": "/index.html" },
+    { "source": "/store", "destination": "/index.html" },
+    { "source": "/category/:categoryName", "destination": "/index.html" },
+    { "source": "/product/:id", "destination": "/index.html" },
+    { "source": "/cart", "destination": "/index.html" },
+    { "source": "/search", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}
