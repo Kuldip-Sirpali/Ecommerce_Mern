@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 import ProductCard from "../../ProductCard";
 import { BiLoader } from "react-icons/bi";
+import CardSkeleton from "../../CardSkeleton";
 const Category = () => {
   const navigate = useNavigate();
   const { categoryName } = useParams();
@@ -51,8 +52,15 @@ const Category = () => {
         ))}
       </div>
       {loading && (
-        <div className="flex justify-center items-center my-4">
-          <BiLoader />
+        // <div className="flex justify-center items-center my-4">
+        //   <BiLoader />
+        // </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {Array(10)
+            .fill(null)
+            .map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
         </div>
       )}
     </div>

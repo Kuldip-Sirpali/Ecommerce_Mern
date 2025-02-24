@@ -30,9 +30,9 @@ const NavBar = () => {
       </section> */}
 
       {/* Navbar */}
-      <div className="w-full flex items-center justify-between px-4 py-2 md:px-10  bg-[#70e000]">
+      <div className="w-full blury  shadow-lg  flex items-center justify-between px-4 py-2 md:px-10 ">
         {/* Brand */}
-        <NavLink className="text-white font-bold  text-2xl md:text-3xl" to="/">
+        <NavLink className="text-[#70e000] font-bold  text-4xl md:text-3xl" to="/">
           ecomartia
         </NavLink>
 
@@ -45,11 +45,11 @@ const NavBar = () => {
           </div>
 
           {/* Navigation Items */}
-          <div className="flex items-center gap-6 ">
+          <div className="flex items-center gap-6 text-[#70e000]">
             {navItems.slice(0, 7).map((item) => (
               <NavLink
                 to={item.path}
-                className="text-white hover:text-black transition duration-200"
+                className=" hover:text-black transition duration-200"
                 key={item.name}
               >
                 {item.name}
@@ -57,16 +57,16 @@ const NavBar = () => {
             ))}
 
             {/* Cart with Total Quantity */}
-            <NavLink to="/cart" className="text-white font-bold text-sm">
+            <NavLink to="/cart" className=" font-bold text-sm">
               Cart ({totalQuantity})
             </NavLink>
           </div>
         </div>
 
         {/* Hamburger Button - For small screens */}
-        <div className="block md:hidden">
+        <div className="block md:hidden ">
           <button
-            className="text-white focus:outline-none"
+            className="text-[#70e000] font-bold hover:bg-white p-2 rounded-full focus:outline-none"
             onClick={toggleMenu}
           >
             {/* Hamburger icon */}
@@ -78,13 +78,13 @@ const NavBar = () => {
 
       {/* Mobile Dropdown Menu - Toggled by the Hamburger icon */}
       <div
-        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-[#70e000] shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } md:hidden z-50`}
+        className={`fixed top-0 left-0 h-full w-full max-w-sm blury shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } md:hidden z-50 text-[#70e000]`}
       >
         <div className="flex flex-col p-4 gap-4">
           {/* Close Menu Button */}
           <button
-            className="self-end text-white focus:outline-none  p-1 rounded-full"
+            className="self-end  focus:outline-none hover:bg-white  p-1 rounded-full"
             onClick={toggleMenu}
           >
             {/* Close icon */}
@@ -114,7 +114,7 @@ const NavBar = () => {
           {navItems.slice(0, 7).map((item) => (
             <NavLink
               to={item.path}
-              className="text-white rounded-md hover:bg-gray-100 hover:text-black p-2"
+              className=" rounded-full hover:bg-gray-100 hover:text-black p-2"
               key={item.name}
               onClick={toggleMenu} // Close the menu on click
             >
@@ -125,7 +125,7 @@ const NavBar = () => {
           {/* Cart with Total Quantity */}
           <NavLink
             to="/cart"
-            className="text-black rounded-md  hover:bg-gray-100  text-sm p-2"
+            className=" rounded-md  hover:bg-gray-100  text-sm p-2"
             onClick={toggleMenu}
           >
             Cart ({totalQuantity})

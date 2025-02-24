@@ -156,12 +156,11 @@ const Home = () => {
             <p className="text-lg sm:text-xl text-gray-700 mb-8 animate__animated animate__fadeIn animate__delay-2s">
               🎉 **Feel the thrill!** Every category is a new world waiting for you to discover. Hover over each card to explore more!
             </p>
-
             <Button
               onClick={() => navigate("/store")}
               className="  bg-[#70e000] text-white px-16 py-2 text-lg rounded-full hover:bg-[#38b000] transition duration-300 animate__animated animate__fadeIn animate__delay-3s"
             >
-              Explore More  →_→
+              Explore Store →_→
             </Button>
           </div>
         </div>

@@ -45,3 +45,35 @@
 .overflow-auto::-webkit-scrollbar-thumb:hover {
   background-color: #6b7280;
 }
+
+.blury {
+  backdrop-filter: blur(10px);
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #e0e0e0;
+}
+
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite linear;
+}

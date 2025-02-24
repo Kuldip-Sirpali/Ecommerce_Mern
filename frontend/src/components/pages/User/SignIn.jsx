@@ -115,12 +115,15 @@ const SignIn = () => {
                 </div>
               </div>
             </div>
-            <Button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-[#70e000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#38b000] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600  border-[0.4px] border-white"
-            >
-              {loading ? <BiLoader /> : "Sign In"}
-            </Button>
+            <div className="mt-2">
+              <Button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-[#70e000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#38b000] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600  border-[0.4px] border-white"
+              >
+                {loading ? <BiLoader /> : "Sign In"}
+              </Button>
+            </div>
+
           </div>
         </form>
 

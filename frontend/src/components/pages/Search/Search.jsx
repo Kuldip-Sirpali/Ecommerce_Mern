@@ -568,13 +568,14 @@ const Search = () => {
             placeholder="Search the best products..."
             className="bg-transparent w-full pl-2 pr-10 outline-none text-gray-700"
             autoComplete="off"
+            autoFocus
           />
           {/* Custom Clear Button */}
           {query && (
             <button
               type="button"
               onClick={handleClear}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-700"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-400"
             >
               <IoCloseCircle size={20} />
             </button>
@@ -582,7 +583,7 @@ const Search = () => {
 
           {/* Suggestions Box */}
           {suggestions.length > 0 && (
-            <div className="absolute left-0 right-0 mt-4 drop-shadow-2xl bg-white border rounded-lg shadow-lg z-10 max-h-60 overflow-auto">
+            <div className="absolute left-0 right-0 mt-4 drop-shadow-2xl bg-white border rounded-lg shadow-lg z-10 max-h-60 overflow-auto min-w-72">
               {suggestions.map((suggestion, index) => (
                 <div
                   key={index}
