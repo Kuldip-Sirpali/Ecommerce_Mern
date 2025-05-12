@@ -42,7 +42,7 @@ const Store = () => {
   return (
     <div className=" container mx-auto px-4 py-8 min-h-screen">
       <h1 className="text-2xl  mb-4">EXPLORE PRODUCTS</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {products?.map((item) => (
           <ProductCard key={item?._id} item={item} method={handleAddToCart} />
         ))}

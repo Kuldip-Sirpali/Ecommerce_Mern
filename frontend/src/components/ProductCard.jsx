@@ -18,7 +18,7 @@ const ProductCard = ({ item, method }) => {
       <div
         style={{
           backgroundImage: `url(${item?.image})`,
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
