@@ -6,6 +6,7 @@ import { getUser } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
+import { BACKEND_URL } from "../../../utils/constants.js"
 const OAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const OAuth = () => {
     try {
       if (authResult["code"]) {
         const result = await axios.get(
-          `http://localhost:8000/api/v1/user/google?code=${authResult?.code}`
+          `${BACKEND_URL}/api/v1/user/google?code=${authResult?.code}`
         );
         if (result.status === 200) {
           dispatch(getUser(result?.data?.data));
@@ -83,7 +84,7 @@ const OAuth = () => {
           className="w-full flex items-center justify-center gap-3 px-5 py-3 bg-main text-white font-semibold rounded-xl hover:bg-Hmain transition-colors duration-200 shadow focus:outline-none focus:ring-2 focus:ring-main/5"
         >
           <img
-            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            src="https://res.cloudinary.com/djlajb0wj/image/upload/v1747304786/google_fgwhsn.svg"
             alt="Google"
             className="w-6 h-6"
           />
