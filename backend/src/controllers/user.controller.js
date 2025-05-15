@@ -268,12 +268,14 @@ export const googleOAuth = asyncHandler(async (req, res) => {
     .status(200)
     .cookie("at", accessToken, {
       httpOnly: true,
-      secure: false,
+      secure: true,
+      sameSite: "None",
       expires: new Date(Date.now() + 60 * 60 * 1000), //1hr
     })
     .cookie("rt", refreshToken, {
       httpOnly: true,
-      secure: false,
+      secure: true,
+      sameSite: "None",
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     })
     .json(new ApiResponse(200, user, "Google sign in successfully"));
