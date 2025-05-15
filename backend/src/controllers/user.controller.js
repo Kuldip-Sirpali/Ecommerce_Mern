@@ -6,7 +6,8 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 import { Resend } from "resend";
-
+import axios from "axios";
+import { oauth2Client } from "../utils/googleClient.js";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 //function to send verification code
@@ -169,8 +170,9 @@ export const signInUser = asyncHandler(async (req, res) => {
 });
 
 export const signOutUser = asyncHandler(async (req, res) => {
+  const { id } = req.query;
   await User.findByIdAndUpdate(
-    req.user._id,
+    id,
     {
       $unset: {
         refreshToken: 1,
@@ -198,8 +200,7 @@ export const signOutUser = asyncHandler(async (req, res) => {
 
 export const refreshAccessToken = asyncHandler(async (req, res) => {
   try {
-    const incomingRefreshToken =
-      req.cookies.refreshToken || req.body.refreshToken;
+    const incomingRefreshToken = req.cookies.rt || req.body.rt;
 
     if (!incomingRefreshToken) {
       throw new ApiError(400, "Unauthorized request");
@@ -239,4 +240,41 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
   } catch (error) {
     throw new ApiError(400, error?.message || "Invalid refresh token");
   }
+});
+
+export const googleOAuth = asyncHandler(async (req, res) => {
+  const code = req.query.code;
+  if (!code) {
+    return res.status(400).json(new ApiResponse(400, {}, "Code is required"));
+  }
+  const { tokens } = await oauth2Client.getToken(code);
+  oauth2Client.setCredentials(tokens);
+  const userRes = await axios.get(
+    `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`
+  );
+  const { email, name, picture } = userRes.data;
+  let user = await User.findOne({ email });
+  if (!user) {
+    user = await User.create({
+      fullName: name,
+      email,
+      picture,
+    });
+  }
+  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
+    user._id
+  );
+  return res
+    .status(200)
+    .cookie("at", accessToken, {
+      httpOnly: true,
+      secure: false,
+      expires: new Date(Date.now() + 60 * 60 * 1000), //1hr
+    })
+    .cookie("rt", refreshToken, {
+      httpOnly: true,
+      secure: false,
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+    })
+    .json(new ApiResponse(200, user, "Google sign in successfully"));
 });

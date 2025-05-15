@@ -46,9 +46,9 @@
   background-color: #6b7280;
 }
 
-.blury {
+/* .blury {
   backdrop-filter: blur(10px);
-}
+} */
 
 @keyframes shimmer {
   0% {

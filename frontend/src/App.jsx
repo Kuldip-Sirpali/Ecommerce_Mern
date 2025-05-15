@@ -18,6 +18,18 @@ import SignUp from "./components/pages/User/SignUp";
 import SignIn from "./components/pages/User/SignIn";
 import VerifyEmail from "./components/pages/User/VerifyEmail";
 import ErrorPage from "./components/ErrorPage";
+import CategoryList from "./components/pages/Category/CategoryList";
+
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import OAuth from "./components/pages/User/OAuth";
+const GoogleWrapper = () => (
+  <GoogleOAuthProvider
+    clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
+  >
+    <OAuth />
+  </GoogleOAuthProvider>
+
+);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,7 +51,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/sign-in",
-        element: <SignIn />,
+        // element: <SignIn />,
+        element: <GoogleWrapper />,
       },
       {
         path: "/profile",
@@ -48,6 +61,11 @@ const router = createBrowserRouter([
       {
         path: "/store",
         element: <Store />,
+      },
+      {
+        path: "/category",
+        element: <CategoryList />,
+
       },
       {
         path: "/category/:categoryName",
@@ -70,33 +88,39 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  useEffect(() => {
-    const refreshToken = async () => {
-      try {
-        axios.defaults.withCredentials = true;
-        const response = await axios.post(
-          `${BACKEND_URL}/api/v1/user/refresh-token`
-        );
-      } catch (error) {
-        console.log("Please sign in again to continue");
-      }
-    };
-    // Refresh token every 1hr
-    const intervalId = setInterval(
-      refreshToken,
-      import.meta.env.VITE_ACCESS_TOKEN_EXPIRY
-    );
 
-    // Initial refresh
-    refreshToken();
+  // useEffect(() => {
+  //   const refreshToken = async () => {
+  //     try {
+  //       axios.defaults.withCredentials = true;
+  //       const response = await axios.post(
+  //         `${BACKEND_URL}/api/v1/user/refresh-token`
+  //       );
+  //       if (response.status === 400) {
+  //         window.location.href = "/sign-in";
+  //       }
+  //     } catch (error) {
+  //       throw new Error("Failed to establish valid session");
+  //     }
+  //   };
+  //   // Refresh token every 1hr
+  //   const intervalId = setInterval(
+  //     refreshToken,
+  //     import.meta.env.VITE_ACCESS_TOKEN_EXPIRY
+  //   );
 
-    return () => clearInterval(intervalId);
-  }, []);
+  //   // Initial refresh
+  //   refreshToken();
+
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
 
   return (
     <>
       <RouterProvider router={router}>
         <Container />
+     
       </RouterProvider>
     </>
   );

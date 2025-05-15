@@ -13,7 +13,7 @@ const ErrorSVG = () => (
     {/* Decorative Curved Shape */}
     <path
       d="M250 50 C300 80, 300 150, 250 180 C200 150, 200 80, 250 50Z"
-      fill="#38b000"
+      fill="#650102"
       opacity="0.2"
     />
     
@@ -24,7 +24,7 @@ const ErrorSVG = () => (
       dominantBaseline="middle"
       textAnchor="middle"
       fontSize="80"
-      fill="#38b000"
+      fill="main"
       fontFamily="Arial, sans-serif"
     >
       404
@@ -59,7 +59,7 @@ const ErrorPage = () => {
         </p>
         <Link
           to="/"
-          className="inline-block px-6 py-2  bg-[#38b000] text-white font-semibold rounded-full hover:bg-[#70e000] transition duration-300"
+          className="inline-block px-6 py-2  bg-main text-white font-semibold rounded-full hover:bg-Hmain transition duration-300"
         >
           Go back home
         </Link>

@@ -42,5 +42,5 @@ export const useGetCategorizedProduct = (categoryName, page) => {
     fetchCategorizedProducts();
   }, [page, categoryName]);
 
-  return [products, loading, setLoading];
+  return [products, hasMore, loading, setLoading];
 };

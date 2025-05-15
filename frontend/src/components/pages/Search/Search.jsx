@@ -557,7 +557,7 @@ const Search = () => {
 
   return (
     <form onSubmit={handleSearch} className="relative w-full max-w-sm">
-      <section className="px-4 py-2 rounded-full bg-white flex items-center gap-3 shadow-md relative">
+      <section className="px-4 py-1 rounded-full  flex items-center gap-3 border-gray-400 border-2 relative">
         <div className="relative w-full">
           <input
             type="text"
@@ -565,7 +565,7 @@ const Search = () => {
             value={query}
             onChange={handleInputChange}
             placeholder="Search the best products..."
-            className=" search-input bg-transparent w-full pl-2 pr-10 outline-none text-gray-700"
+            className=" search-input bg-transparent w-full pl-2 pr-10 outline-none sm:text-main sm:placeholder:text-gray-500 placeholder:text-white"
             autoComplete="off"
             autoFocus
           />
@@ -574,7 +574,7 @@ const Search = () => {
             <button
               type="button"
               onClick={handleClear}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-400"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 "
             >
               <IoCloseCircle size={20} />
             </button>
@@ -582,11 +582,11 @@ const Search = () => {
 
           {/* Suggestions Box */}
           {suggestions.length > 0 && (
-            <div className="absolute left-0 right-0 mt-4 drop-shadow-2xl bg-white border rounded-lg shadow-lg z-10 max-h-60 overflow-auto min-w-72">
+            <div className="absolute left-0 right-0 mt-4 drop-shadow-2xl bg-white text-main border rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto min-w-72">
               {suggestions.map((suggestion, index) => (
                 <div
                   key={index}
-                  className="px-4 py-2 hover:bg-[#38b000] hover:text-white cursor-pointer"
+                  className="px-4 py-2 hover:bg-Hmain hover:text-white cursor-pointer"
                   onClick={() => handleSuggestionClick(suggestion)}
                 >
                   {suggestion}
@@ -599,7 +599,7 @@ const Search = () => {
         {/* Search Button */}
         <button
           type="submit"
-          className="bg-[#70e000] text-white p-2 rounded-full"
+          className="bg-main text-white p-2 rounded-full"
         >
           <FaSearch />
         </button>

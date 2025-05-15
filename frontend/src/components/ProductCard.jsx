@@ -13,7 +13,7 @@ const ProductCard = ({ item, method }) => {
   return (
     <div
       key={item?._id}
-      className="bg-white shadow-lg rounded-lg p-2  transform border border-[#80d459] transition-all  duration-1000 "
+      className="bg-gradient-to-br from-white via-[#f6fff3] to-[#e9ffd9] shadow-lg rounded-2xl border border-[#e9bbc5] hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden"
     >
       <div
         style={{
@@ -22,31 +22,41 @@ const ProductCard = ({ item, method }) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-        className="h-36 w-full overflow-hidden bg-gray-100 flex items-center justify-center cursor-pointer rounded-t-md group relative"
+        className="h-48 w-full cursor-pointer relative group"
         onClick={() => navigate(`/product/${item?._id}`)}
-      ></div>
-
-      <div className="p-1 text-left">
-        <h2 className="text-lg font-semibold text-gray-800 truncate">
-          {item.title.length > 20
-            ? `${item.title.slice(0, 20)}...`
-            : item.title}
-        </h2>
-        <span className="text-[#38b000] text-lg  mt-1">Rs. {finalPrice}</span>
-
-        <span className="text-md text-gray-500 ml-2 line-through">
-          Rs.{item?.price}
-        </span>
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-[#650102]/40 to-transparent group-hover:from-[#650102]/60 transition" />
       </div>
 
-      <Button
-        onClick={() => method(item)}
-        className="w-full px-4 py-2 bg-[#70e000] hover:bg-[#38b000] transition-colors text-white font-medium rounded-md mt-4"
-      >
-
-
-        Add to Cart <FaCartArrowDown className="inline-block ml-2" />
-      </Button>
+      <div className="flex-1 flex flex-col justify-between px-5 py-4">
+        <div>
+          <h2 className="text-base font-semibold text-Hmain mb-1 truncate">
+            {item.title.length > 30
+              ? `${item.title.slice(0, 30)}...`
+              : item.title}
+          </h2>
+          {/* <p className="text-xs text-[#4d704d] mb-3 truncate">
+            {item?.description?.slice(0, 50)}
+            {item?.description?.length > 50 ? "..." : ""}
+          </p> */}
+        </div>
+        <div className="flex items-center mb-4">
+          <span className="text-main text-sm font-bold">Rs. {finalPrice}</span>
+          <span className="text-sm text-gray-400 ml-2 line-through">
+            Rs.{item?.price}
+          </span>
+          {/* <span className="ml-2 px-2 py-0.5 bg-[#d2f8c2] text-[#38b000] text-xs font-semibold rounded-full">
+            -{DISCOUNT_PERCENTAGE}%
+          </span> */}
+        </div>
+        <Button
+          onClick={() => method(item)}
+          className="w-full px-2 py-2 text-xs bg-main hover:bg-Hmain transition-colors text-white font-semibold rounded-full flex items-center justify-center gap-2 shadow-sm"
+        >
+          <FaCartArrowDown size={14} />
+          Add to Cart
+        </Button>
+      </div>
     </div>
   );
 };

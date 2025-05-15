@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
 import useGetProducts from "../../../hooks/useGetProducts";
 import ProductCard from "../../ProductCard";
-import { BiLoader } from "react-icons/bi";
 import CardSkeleton from "../../CardSkeleton";
 const Store = () => {
   const { user } = useSelector((state) => state.customer);

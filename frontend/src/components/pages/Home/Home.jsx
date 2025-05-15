@@ -1,10 +1,23 @@
-import React from "react";
-import Slideshow from "./SlideShow";
-import { useNavigate } from "react-router-dom";
-import Button from "../../Button"
-import { FaArrowAltCircleRight } from "react-icons/fa"
+import Category from "../Category/Category";
+import Slider from "./Slider";
 const Home = () => {
-  const navigate = useNavigate();
+  const categories = [
+    {
+      name: "men",
+    },
+    {
+      name: "women",
+    },
+    {
+      name: "home-appliances",
+    },
+    {
+      name: "electrical-devices",
+    },
+    {
+      name: "kids",
+    },
+  ];
 
   return (
     <>
@@ -98,8 +111,7 @@ const Home = () => {
         </div>
       </section> */}
 
-
-      <section className="relative bg-black w-full h-screen bg-cover bg-center " style={{ backgroundImage: "url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGVjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D')" }}>
+      {/* <section className="relative bg-black w-full h-screen bg-cover bg-center " style={{ backgroundImage: "url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGVjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D')" }}>
         <div className="w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-6 sm:px-12">
           <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 text-center animate__animated animate__fadeIn animate__delay-1s">
             Unleash Your Style. Unleash Your Potential!
@@ -114,38 +126,60 @@ const Home = () => {
             Explore Now  <FaArrowAltCircleRight />
           </Button>
         </div>
+      </section> */}
+
+      <section className="sm:px-24">
+        <Slider />
       </section>
 
-      <section className="w-full bg-[#f1f5f8] py-20">
+      {/* <section className="w-full bg-[#f1f5f8] py-20 sm:px-32">
         <div className="container mx-auto text-center px-6">
           <h2 className="text-4xl sm:text-5xl font-semibold text-gray-800 mb-10 animate__animated animate__fadeIn">
             🌟 Explore Our World of Innovation! 🌟
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 mb-10 animate__animated animate__fadeIn animate__delay-1s">
-            From premium electronics to exclusive fashion collections—our world is full of amazing discoveries waiting for you.
+            From premium electronics to exclusive fashion collections—our world
+            is full of amazing discoveries waiting for you.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            <div className="relative group overflow-hidden rounded-lg shadow-xl transform hover:scale-105 transition-all duration-500 cursor-pointer"
+            <div
+              className="relative group overflow-hidden rounded-lg shadow-xl transform hover:scale-105 transition-all duration-500 cursor-pointer"
               onClick={() => navigate("/category/electrical-devices")}
             >
-              <img src="https://images.unsplash.com/photo-1675455137349-399d41cfcd72?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWNvbW1lcmNlJTIwZWxlY3Ryb25pY3N8ZW58MHx8MHx8fDA%3D" alt="Category 1" className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-110" />
+              <img
+                src="https://images.unsplash.com/photo-1675455137349-399d41cfcd72?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWNvbW1lcmNlJTIwZWxlY3Ryb25pY3N8ZW58MHx8MHx8fDA%3D"
+                alt="Category 1"
+                className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Electronics
               </div>
             </div>
 
-            <div className="relative group overflow-hidden rounded-lg shadow-xl transform hover:scale-105 transition-all duration-500 cursor-pointer"
+            <div
+              className="relative group overflow-hidden rounded-lg shadow-xl transform hover:scale-105 transition-all duration-500 cursor-pointer"
               onClick={() => navigate("/category/women")}
             >
-              <img src="https://images.unsplash.com/photo-1605086998852-18371cfd9b2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGVjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D" alt="Category 2" className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-110" />
+              <img
+                src="https://images.unsplash.com/photo-1605086998852-18371cfd9b2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGVjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D"
+                alt="Category 2"
+                className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Fashion
               </div>
             </div>
 
-            <div className="relative group overflow-hidden rounded-lg shadow-xl transform hover:scale-105 transition-all duration-500 cursor-pointer" onClick={() => navigate("/category/home-appliances")}>
-              <img src="https://plus.unsplash.com/premium_photo-1664910692976-a5abab971d64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZWNvbW1lcmNlJTIwaG9tZSUyMGFwcGxpYW5jZXN8ZW58MHx8MHx8fDA%3D" alt="Category 3" className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-110" />
+            <div
+              className="relative group overflow-hidden rounded-lg shadow-xl transform hover:scale-105 transition-all duration-500 cursor-pointer"
+              onClick={() => navigate("/category/home-appliances")}
+            >
+              <img
+                src="https://plus.unsplash.com/premium_photo-1664910692976-a5abab971d64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZWNvbW1lcmNlJTIwaG9tZSUyMGFwcGxpYW5jZXN8ZW58MHx8MHx8fDA%3D"
+                alt="Category 3"
+                className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Home & Living
               </div>
@@ -154,7 +188,8 @@ const Home = () => {
 
           <div className="mt-16">
             <p className="text-lg sm:text-xl text-gray-700 mb-8 animate__animated animate__fadeIn animate__delay-2s">
-              🎉 **Feel the thrill!** Every category is a new world waiting for you to discover. Hover over each card to explore more!
+              🎉 **Feel the thrill!** Every category is a new world waiting for
+              you to discover. Hover over each card to explore more!
             </p>
             <Button
               onClick={() => navigate("/store")}
@@ -164,8 +199,18 @@ const Home = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
+      <section className="w-full ">
+        {categories.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center "
+          >
+            <Category categoryName={item.name} />
+          </div>
+        ))}
+      </section>
     </>
   );
 };

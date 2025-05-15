@@ -3,7 +3,7 @@ import React from 'react'
 
 const CardSkeleton = () => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-2 border border-[#80d459] overflow-hidden">
+    <div className="bg-white shadow-lg rounded-lg p-2 border border-[#e9bbc5] overflow-hidden">
       {/* Image Placeholder */}
       <div className="h-36 w-full skeleton-shimmer rounded-t-md"></div>
 

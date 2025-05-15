@@ -14,9 +14,12 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    picture: {
+      type: String,
+    },
     password: {
       type: String,
-      required: true,
+      // required: true,
     },
     refreshToken: {
       type: String,
@@ -27,11 +30,11 @@ const userSchema = new mongoose.Schema(
     },
     verificationCode: {
       type: String,
-      required: [true, "Verify code  is required"],
+      // required: [true, "Verify code  is required"],
     },
     verificationCodeExpiry: {
       type: Date,
-      required: [true, "Verify code expiry  is required"],
+      // required: [true, "Verify code expiry  is required"],
     },
     isVerified: {
       type: Boolean,
