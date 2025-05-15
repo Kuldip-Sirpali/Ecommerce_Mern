@@ -7,6 +7,7 @@
     { "source": "/sign-in", "destination": "/index.html" },
     { "source": "/profile", "destination": "/index.html" },
     { "source": "/store", "destination": "/index.html" },
+    {"source":"/category","destination":"/index.html"},
     { "source": "/category/:categoryName", "destination": "/index.html" },
     { "source": "/product/:id", "destination": "/index.html" },
     { "source": "/cart", "destination": "/index.html" },
