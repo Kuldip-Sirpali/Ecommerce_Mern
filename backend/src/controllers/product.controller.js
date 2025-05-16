@@ -118,56 +118,45 @@ export const searchProduct = asyncHandler(async (req, res) => {
   if (!query) {
     throw new ApiError(400, "No query available");
   }
-  // const products = await Product.find({
-  //   $or: [
-  //     { title: { $regex: query, $options: "i" } }, // Case-insensitive search
-  //     { description: { $regex: query, $options: "i" } },
-  //     { tags: { $regex: query, $options: "i" } },
-  //     { category: { $regex: query, $options: "i" } },
-  //   ],
-  // }).limit(10);
 
-  const products = await Product.find({
-    $or: [
-      { title: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the title
-      { description: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the description
-      { tags: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the tags
-      { category: { $regex: ".*" + query + ".*", $options: "i" } }, // Match any part of the category
+  // Simple search function that will find "Apple watch" products
+  async function searchProducts(query) {
+    // Split the query into individual words
+    const words = query.split(" ").filter((word) => word.trim().length > 0);
 
-      // Handle singular and plural forms (e.g., "device" and "devices")
-      {
-        title: {
-          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
-          $options: "i",
-        },
-      }, // Singular/plural match in title
-      {
-        description: {
-          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
-          $options: "i",
-        },
-      },
-      {
-        tags: {
-          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
-          $options: "i",
-        },
-      },
-      {
-        category: {
-          $regex: ".*" + query.replace(/s\b/i, "") + "(s|).*",
-          $options: "i",
-        },
-      },
+    // Build the search conditions
+    const searchConditions = [];
 
-      // Match phrases like "electrical devices", "best device", etc.
-      { title: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in title
-      { description: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in description
-      { tags: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in tags
-      { category: { $regex: query.replace(/\s+/g, ".*"), $options: "i" } }, // Match query as a phrase in category
-    ],
-  }).limit(10);
+    // 1. First try exact phrase match
+    const exactPhraseConditions = [
+      { title: { $regex: query, $options: "i" } },
+      { description: { $regex: query, $options: "i" } },
+      { tags: { $regex: query, $options: "i" } },
+      { category: { $regex: query, $options: "i" } },
+    ];
+    searchConditions.push(...exactPhraseConditions);
 
+    // 2. Then try matching individual words
+    if (words.length > 1) {
+      words.forEach((word) => {
+        if (word.length > 1) {
+          // Ignore very short words
+          searchConditions.push(
+            { title: { $regex: word, $options: "i" } },
+            { description: { $regex: word, $options: "i" } },
+            { tags: { $regex: word, $options: "i" } },
+            { category: { $regex: word, $options: "i" } }
+          );
+        }
+      });
+    }
+
+    // Run the query with all the conditions
+    return await Product.find({ $or: searchConditions }).limit(10);
+  }
+
+  // Usage example:
+  const products = await searchProducts(query);
   if (!products) {
     throw new ApiError(500, "No result found");
   }
