@@ -13,7 +13,7 @@ const router = Router();
 router.route("/register").post(registerUser);
 router.route("/verify-code").post(verifyCode);
 router.route("/signIn").post(signInUser);
-router.route("/signOut").post(signOutUser);
+router.route("/signOut").post( signOutUser);
 router.route("/google").get(googleOAuth);
 router.route("/refresh-token").post(refreshAccessToken);
 

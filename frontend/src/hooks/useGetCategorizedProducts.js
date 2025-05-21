@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "../utils/constants";
+import api from "../api/apiConfig";
 export const useGetCategorizedProduct = (categoryName, page) => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -11,8 +10,8 @@ export const useGetCategorizedProduct = (categoryName, page) => {
       return;
     } // Stop fetching if no more data
     try {
-      const response = await axios.get(
-        `${BACKEND_URL}/api/v1/store/get-categorized-products?category=${categoryName}&page=${page}&limit=10`
+      const response = await api.get(
+        `/store/get-categorized-products?category=${categoryName}&page=${page}&limit=10`
       );
       if (response.data.data.length === 0) {
         setHasMore(false);

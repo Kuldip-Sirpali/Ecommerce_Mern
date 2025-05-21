@@ -200,10 +200,10 @@ export const signOutUser = asyncHandler(async (req, res) => {
 
 export const refreshAccessToken = asyncHandler(async (req, res) => {
   try {
-    const incomingRefreshToken = req.cookies.rt || req.body.rt;
+    const incomingRefreshToken = req.cookies.rt || req.body.refreshToken;
 
     if (!incomingRefreshToken) {
-      throw new ApiError(400, "Unauthorized request");
+      return res.status(401).json(401, null, "Unauthorized request");
     }
     const decodedToken = jwt.verify(
       incomingRefreshToken,
@@ -213,11 +213,12 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
     const user = await User.findById(decodedToken?._id);
 
     if (!user) {
-      throw new ApiError(400, "Invalid refresh token");
+      return res
+        .status(400)
+        .json(new ApiResponse(400, null, "Invalid refresh token"));
     }
-
     if (incomingRefreshToken !== user?.refreshToken) {
-      throw new ApiError(400, "Refresh token is expired or used");
+      throw new ApiError(401, "Refresh token is expired or used");
     }
 
     const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
@@ -226,19 +227,15 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
 
     return res
       .status(200)
-      .cookie("accessToken", accessToken, {
-        httpOnly: true,
-        secure: false,
-        expires: new Date(Date.now() + 60 * 60 * 1000), //1hr
-      })
-      .cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: false,
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      })
-      .json(new ApiResponse(200, {}, "Access token refreshed"));
+      .json(
+        new ApiResponse(
+          200,
+          { accessToken, refreshToken },
+          "Access token refreshed"
+        )
+      );
   } catch (error) {
-    throw new ApiError(400, error?.message || "Invalid refresh token");
+    throw new ApiError(401, error?.message || "Invalid refresh token");
   }
 });
 
@@ -266,17 +263,11 @@ export const googleOAuth = asyncHandler(async (req, res) => {
   );
   return res
     .status(200)
-    .cookie("at", accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      expires: new Date(Date.now() + 60 * 60 * 1000), //1hr
-    })
-    .cookie("rt", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-    })
-    .json(new ApiResponse(200, user, "Google sign in successfully"));
+    .json(
+      new ApiResponse(
+        200,
+        { user, accessToken, refreshToken },
+        "Google sign in successfully"
+      )
+    );
 });

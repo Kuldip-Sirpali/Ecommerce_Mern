@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Search from "./pages/Search/Search";
 import { RiMenu3Fill } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa";
-import { BiCart, BiCartAdd, BiCategory, BiUser } from "react-icons/bi";
+import { BiCart, BiCategory, BiUser } from "react-icons/bi";
 import Logo from "./Logo";
 
 const NavBar = () => {
@@ -90,8 +89,9 @@ const NavBar = () => {
 
       {/* Mobile Dropdown Menu - Toggled by the Hamburger icon */}
       <div
-        className={`fixed top-0 left-0 h-full w-full max-w-sm bg-main shadow-lg transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } md:hidden z-50 text-[#fff]`}
+        className={`fixed top-0 left-0 h-full w-full max-w-sm bg-main shadow-lg transition-transform transform ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } md:hidden z-50 text-[#fff]`}
       >
         <div className="flex flex-col p-4 gap-4">
           {/* Close Menu Button */}

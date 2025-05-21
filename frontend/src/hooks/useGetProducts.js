@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../redux/productSlice";
-import { BACKEND_URL } from "../utils/constants";
+import api from "../api/apiConfig";
 const useGetProducts = (page, loading, setLoading) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
@@ -14,8 +13,8 @@ const useGetProducts = (page, loading, setLoading) => {
         return;
       } // Stop fetching if no more data
       try {
-        const response = await axios.get(
-          `${BACKEND_URL}/api/v1/store/get-products?page=${page}&limit=10`
+        const response = await api.get(
+          `/store/get-products?page=${page}&limit=10`
         );
 
         if (response.data.data.length === 0) {

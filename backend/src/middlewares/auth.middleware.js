@@ -6,11 +6,10 @@ import { User } from "../models/user.model.js";
 export const verifyUserJWT = asyncHandler(async (req, res, next) => {
   try {
     const token =
-      req.cookies?.at ||
-      req.header("Authorization")?.replace("Bearer ", "");
+      req.cookies?.at || req.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
-      throw new ApiError(401, "Unauthorize request");
+      throw new ApiError(401, "Unauthorize request"); //redirect to sign-in
     }
 
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
@@ -19,7 +18,7 @@ export const verifyUserJWT = asyncHandler(async (req, res, next) => {
       "-password -refreshToken"
     );
     if (!user) {
-      throw new ApiError(401, "Invalid Access Token");
+      throw new ApiError(402, "Invalid Access Token"); //refresh-token
     }
     req.user = user;
     next();

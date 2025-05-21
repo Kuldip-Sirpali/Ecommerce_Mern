@@ -7,19 +7,20 @@ import pf from "/images/PF.avif";
 import { BACKEND_URL } from "../../../utils/constants";
 import { getProducts } from "../../../redux/productSlice";
 import toast from "react-hot-toast";
+import api from "../../../api/apiConfig";
 const Profile = () => {
-  const { user } = useSelector((state) => state.customer);
+  const { user: loggedInUser } = useSelector((state) => state?.customer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!loggedInUser?.user) {
       navigate("/sign-in");
     }
   }, []);
   const handleSignOut = async () => {
     try {
-      await axios.post(`${BACKEND_URL}/api/v1/user/signOut?id=${user?._id}`);
+      await api.post(`/user/signOut?id=${loggedInUser?.user?._id}`);
       dispatch(getUser(null));
       dispatch(getProducts(null));
       navigate("/sign-in");
@@ -68,13 +69,13 @@ const Profile = () => {
         <aside className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center md:items-start">
           <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-main mb-4">
             <img
-              src={user?.picture ? user?.picture : pf}
+              src={loggedInUser?.user?.picture ? loggedInUser?.user?.picture : pf}
               alt="Profile"
               className="object-cover w-full h-full"
             />
           </div>
-          <h2 className="text-xl font-bold text-gray-800">{user?.fullName}</h2>
-          <span className="text-sm text-gray-500 mb-6">{user?.email}</span>
+          <h2 className="text-xl font-bold text-gray-800">{loggedInUser?.user?.fullName}</h2>
+          <span className="text-sm text-gray-500 mb-6">{loggedInUser?.user?.email}</span>
           <nav className="w-full flex flex-col gap-2">
             <button className="text-left px-4 py-2 rounded-lg hover:bg-green-50 font-medium text-maintransition">
               My Orders
@@ -96,7 +97,7 @@ const Profile = () => {
         {/* Main Content */}
         <main className="md:col-span-2 bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center">
           <h1 className="text-3xl font-extrabold text-main mb-6">
-            Welcome, {user?.fullName?.split(" ")[0]}!
+            Welcome, {loggedInUser?.user?.fullName?.split(" ")[0]}!
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="bg-green-50 rounded-xl p-6 flex flex-col items-center shadow">
@@ -116,13 +117,13 @@ const Profile = () => {
               <div>
                 <span className="block text-gray-500 text-sm">Full Name</span>
                 <span className="block text-gray-800 font-medium">
-                  {user?.fullName}
+                  {loggedInUser?.user?.fullName}
                 </span>
               </div>
               <div>
                 <span className="block text-gray-500 text-sm">Email</span>
                 <span className="block text-gray-800 font-medium">
-                  {user?.email}
+                  {loggedInUser?.user?.email}
                 </span>
               </div>
             </div>

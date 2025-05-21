@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getSearchProducts } from "../../../redux/productSlice";
-import { BACKEND_URL } from "../../../utils/constants";
 
 import { IoCloseCircle } from "react-icons/io5";
+import api from "../../../api/apiConfig";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -522,8 +521,8 @@ const Search = () => {
     if (!query) return;
 
     try {
-      const response = await axios.get(
-        `${BACKEND_URL}/api/v1/store/search-product?query=${query}`
+      const response = await api.get(
+        `/store/search-product?query=${query}`
       );
       dispatch(getSearchProducts(response?.data?.data));
       setSuggestions([]);
@@ -539,8 +538,8 @@ const Search = () => {
     setSuggestions([]);
 
     try {
-      const response = await axios.get(
-        `${BACKEND_URL}/api/v1/store/search-product?query=${suggestion}`
+      const response = await api.get(
+        `/store/search-product?query=${suggestion}`
       );
       dispatch(getSearchProducts(response?.data?.data));
       navigate(`/search?query=${suggestion}`);

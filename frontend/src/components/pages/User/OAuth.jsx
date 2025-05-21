@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
 import { BACKEND_URL } from "../../../utils/constants.js"
+import api from "../../../api/apiConfig.js";
 const OAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const googleResponse = async (authResult) => {
     try {
       if (authResult["code"]) {
-        const result = await axios.get(
-          `${BACKEND_URL}/api/v1/user/google?code=${authResult?.code}`
+        const result = await api.get(
+          `/user/google?code=${authResult?.code}`
         );
         if (result.status === 200) {
           dispatch(getUser(result?.data?.data));

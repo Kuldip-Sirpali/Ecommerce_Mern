@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../utils/constants";
+import api from "../api/apiConfig";
 const useGetAddedProducts = (ids) => {
   useEffect(() => {
     const fetchAddedProducts = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.get(`${BACKEND_URL}/api/v1/cart/get-added-products`, {
+        const response = await api.get(`/cart/get-added-products`, {
           ids,
         });
       } catch (error) {
