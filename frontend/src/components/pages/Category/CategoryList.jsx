@@ -50,7 +50,7 @@ const CategoryList = () => {
     }
   }, []);
   return (
-    <section className="py-8 bg-gray-50 h-screen sm:px-24">
+    <section className="py-8  h-screen sm:px-24">
       <h2 className="text-center mb-6 font-semibold text-2xl text-main">
         Shop by Category
       </h2>

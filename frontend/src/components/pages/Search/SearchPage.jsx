@@ -48,7 +48,7 @@ const SearchPage = () => {
       </div>
 
       {searchProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
           {searchProducts.map((item) => (
             <ProductCard key={item?._id} item={item} method={handleAddToCart} />
           ))}
