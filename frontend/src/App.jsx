@@ -80,6 +80,40 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+   useEffect(() => {
+    // Disable right click
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+
+    // Disable F12 and other keyboard shortcuts
+    const handleKeydown = (e) => {
+      // Prevent F12
+      if (e.keyCode === 123) {
+        e.preventDefault();
+      }
+
+      // Prevent Ctrl+Shift+I/J/C/U
+      if (
+        (e.ctrlKey &&
+          e.shiftKey &&
+          (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+        e.keyCode === 85
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    // Add event listeners
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeydown);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, []);
   return (
     <>
       <RouterProvider router={router}>
