@@ -14,6 +14,7 @@ import ErrorPage from "./components/ErrorPage";
 import CategoryList from "./components/pages/Category/CategoryList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import OAuth from "./components/pages/User/OAuth";
+import { useEffect } from "react";
 const GoogleWrapper = () => (
   <GoogleOAuthProvider
     clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
